@@ -35,8 +35,8 @@ This page describes how to create Database Availability Group and add some addit
 
 ## Prerequisites for EXPRESSCLUSTER X
 1. Partitions for data mirroring
- 1. Cluster partition: This partition is needed to control data mirroring. You need at least **17 MB** for this partition.
- 1. Data partition: A mailbox database file and log must be saved on this partition.
+   1. Cluster partition: This partition is needed to control data mirroring. You need at least **17 MB** for this partition.
+   1. Data partition: A mailbox database file and log must be saved on this partition.
 
 For more information, please visit [NEC website](http://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html?) and refer to **Getting Started Guide** and **Installation and Configuration Guide**.
 ## Install Exchange Server
