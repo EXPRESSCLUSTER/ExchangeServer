@@ -33,6 +33,7 @@ This page describes how to create Database Availability Group and add some addit
 
 ## Prerequisites for Exchange Server 2016
 - Please check Microsoft web site (https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2016).
+  - It is recommended to apply the latest updates with Windows Update.
   - KB2919355 is required to install .NET Framework 4.7.1. on Windows Server 2012 R2. For more detail, please check Microsoft web site (https://support.microsoft.com/en-us/help/2919355/windows-rt-8-1-windows-8-1-and-windows-server-2012-r2-update-april-201).
 
 ## Prerequisites for EXPRESSCLUSTER X
