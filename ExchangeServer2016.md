@@ -8,26 +8,26 @@ This page describes how to create Database Availability Group and add some addit
 | - Windows Server 2012 R2 |
 +--------------------------+
  |
- |  +--------------------------+
- +--| Cluster Node #1          |
- |  | - Windows Server 2012 R2 |
- |  | - Exchange Server 2016   |
- |  |   Mailbox                |
- |  | - EXPRESSCLUSTER X       |
- |  +--------------------------+
+ |  +-----------------------------+
+ +--| Cluster Node #1             |
+ |  | - Windows Server 2012 R2    |
+ |  | - Exchange Server 2016 CU11 |
+ |  |   Mailbox role              |
+ |  | - EXPRESSCLUSTER X          |
+ |  +-----------------------------+
  |
- |  +--------------------------+
- +--| Cluster Node #2          |
- |  | - Windows Server 2012 R2 |
- |  | - Exchange Server 2016   |
- |  |   Mailbox                |
- |  | - EXPRESSCLUSTER X       |
- |  +--------------------------+
+ |  +-----------------------------+
+ +--| Cluster Node #2             |
+ |  | - Windows Server 2012 R2    |
+ |  | - Exchange Server 2016 CU11 |
+ |  |   Mailbox Role              |
+ |  | - EXPRESSCLUSTER X          |
+ |  +-----------------------------+
  |
  |  +--------------------------+
  +--| Client Machine           |
     | - Windows Server 2012 R2 |
-    | - Office 2013            |
+    | - Office 2016            |
     +--------------------------+
 ```
 
