@@ -41,6 +41,15 @@ This page describes how to create Database Availability Group and add some addit
    1. Data partition: A mailbox database file and log must be saved on this partition.
 
 For more information, please visit [NEC website](http://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html?) and refer to **Getting Started Guide** and **Installation and Configuration Guide**.
+
 ## Install Exchange Server
 
+## Create Database Availability Group
+
 ## Install EXPRESSCLUSTER
+1. Install EXPRESSCLUSTER on both the primary and secondary node following **Installation and Configuration Guide**.
+1. Register the licenses.
+1. Restart both nodes.
+
+## Create Cluster and Add Monitor Resources
+
