@@ -5,6 +5,7 @@ This page describes how to create Database Availability Group and add some addit
 ```
 +--------------------------+
 | Active Directory         |
+| Witness Server           |
 | - Windows Server 2012 R2 |
 +--------------------------+
  |
