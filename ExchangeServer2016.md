@@ -32,6 +32,8 @@ This page describes how to create Database Availability Group and add some addit
 ```
 
 ## Prerequisites for Exchange Server 2016
+Please check Microsoft web site.
+https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2016
 
 ## Prerequisites for EXPRESSCLUSTER X
 1. Partitions for data mirroring
