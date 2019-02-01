@@ -53,7 +53,8 @@ For more information, please visit [NEC website](http://www.nec.com/en/global/pr
    C:\Program Files\Microsoft\Exchange Server\V15\Bin
    ```
 1. Copy the following file and rename it.
-   ```PS> cp RemoteExchange.ps1 RemoteExchange-MAPI.ps1
+   ```
+   PS> cp RemoteExchange.ps1 RemoteExchange-MAPI.ps1
    PS> cp RemoteExchange.ps1 RemoteExchange-SMTP.ps1
    ```
 1. Edit RemoteExchange-MAPI.ps1 as below.
@@ -109,4 +110,4 @@ For more information, please visit [NEC website](http://www.nec.com/en/global/pr
 1. Restart both nodes.
 
 ## Create Cluster and Add Monitor Resources
-
+FIXME
