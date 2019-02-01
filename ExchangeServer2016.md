@@ -79,6 +79,7 @@ For more information, please visit [NEC website](http://www.nec.com/en/global/pr
     {
             exit 0
     }
+    (snip)
     ```
 1. Edit RemoteExchange-SMTP.ps1 as below.
     ```
@@ -102,6 +103,7 @@ For more information, please visit [NEC website](http://www.nec.com/en/global/pr
     {
             exit 0
     }
+    (snip)
     ```
 
 ## Install EXPRESSCLUSTER
@@ -109,5 +111,10 @@ For more information, please visit [NEC website](http://www.nec.com/en/global/pr
 1. Register the licenses.
 1. Restart both nodes.
 
+## Save Script Files for Monitoring
+1. 
+1. Copy all script files to *bin* folder of EXPRESSCLUSTER (e.g. C:\Program Files\EXPRESSCLUSTER\bin).
+1. Edit SetEnvironment.bat.
+
 ## Create Cluster and Add Monitor Resources
-FIXME
+1. 
