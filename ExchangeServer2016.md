@@ -19,17 +19,11 @@ This page describes how to create Database Availability Group and add some addit
  |
  |  +-----------------------------+
  +--| Cluster Node #2             |
- |  | - Windows Server 2012 R2    |
- |  | - Exchange Server 2016 CU11 |
- |  |   Mailbox Role              |
- |  | - EXPRESSCLUSTER X          |
- |  +-----------------------------+
- |
- |  +--------------------------+
- +--| Client Machine           |
-    | - Windows Server 2012 R2 |
-    | - Office 2016            |
-    +--------------------------+
+    | - Windows Server 2012 R2    |
+    | - Exchange Server 2016 CU11 |
+    |   Mailbox Role              |
+    | - EXPRESSCLUSTER X          |
+    +-----------------------------+
 ```
 
 ## Prerequisites for Exchange Server 2016
@@ -47,8 +41,67 @@ This page describes how to create Database Availability Group and add some addit
 For more information, please visit [NEC website](http://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html?) and refer to **Getting Started Guide** and **Installation and Configuration Guide**.
 
 ## Install Exchange Server
+1. Install Mailbox Role on each server.
+
+## Setup Witness Server
 
 ## Create Database Availability Group
+
+## Edit PowerShell Files of Exchange Server
+1. Move to the following directory.
+   ```bat
+   C:\Program Files\Microsoft\Exchange Server\V15\Bin
+   ```
+1. Copy the following file and rename it.
+   ```PS> cp RemoteExchange.ps1 RemoteExchange-MAPI.ps1
+   PS> cp RemoteExchange.ps1 RemoteExchange-SMTP.ps1
+   ```
+1. Edit RemoteExchange-MAPI.ps1 as below.
+    ```
+    (snip)
+    ## now actually call the functions 
+    
+    #get-exbanner 
+    #get-tip 
+    
+    #
+    # TIP: You can create your own customizations and put them in My Documents\WindowsPowerShell\profile.ps1
+    # Anything in profile.ps1 will then be run every time you start the shell. 
+    #
+
+    TestMAPI.ps1
+    if($LASTEXITCODE)
+    {
+            exit $LASTEXITCODE
+    }
+    else
+    {
+            exit 0
+    }
+    ```
+1. Edit RemoteExchange-SMTP.ps1 as below.
+    ```
+    (snip)
+    ## now actually call the functions 
+    
+    #get-exbanner 
+    #get-tip 
+    
+    #
+    # TIP: You can create your own customizations and put them in My Documents\WindowsPowerShell\profile.ps1
+    # Anything in profile.ps1 will then be run every time you start the shell. 
+    #
+
+    TestSMTP.ps1
+    if($LASTEXITCODE)
+    {
+            exit $LASTEXITCODE
+    }
+    else
+    {
+            exit 0
+    }
+    ```
 
 ## Install EXPRESSCLUSTER
 1. Install EXPRESSCLUSTER on both the primary and secondary node following **Installation and Configuration Guide**.
