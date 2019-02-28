@@ -40,12 +40,26 @@ This page describes how to create Database Availability Group and add some addit
 
 For more information, please visit [NEC website](http://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html?) and refer to **Getting Started Guide** and **Installation and Configuration Guide**.
 
+## Extend the Active Directory Schema
+1. Run the following command on the first server.  
+   ```bat
+   <DVD drive>\Setup.exe /IAcceptExchangeServerLicenseTerms /PrepareSchema
+   ```
+
+## Prepare Active Directory
+1. Run the following command on the first server.  
+   ```bat
+   <DVD drive>\Setup.exe /IAcceptExchangeServerLicenseTerms /PrepareAD /OrganizationName:"ExchOrg"
+   ```
+
 ## Install Exchange Server
 1. Install Mailbox Role on each server.
 
 ## Setup Witness Server
 
+
 ## Create Database Availability Group
+
 
 ## Edit PowerShell Files of Exchange Server
 1. Move to the following directory.
