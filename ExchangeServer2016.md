@@ -56,10 +56,13 @@ For more information, please visit [NEC website](http://www.nec.com/en/global/pr
 1. Install Mailbox Role on each server.
 
 ## Setup Witness Server
-
+1. Log on the server (Active Directory server on the above configuration) will be witness server.
+1. Add **Exchange Tusted Subsystem** group to Administrators.
 
 ## Create Database Availability Group
-
+1. Start web borwser on an Exchange server.
+1. Access to http://localhost/ecp with Domain Administrator account.
+1. 
 
 ## Edit PowerShell Files of Exchange Server
 1. Move to the following directory.
