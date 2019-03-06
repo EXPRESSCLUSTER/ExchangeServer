@@ -1,4 +1,4 @@
-# Exchange Server 2016
+# Database Availability Group with EXPRESSCLUSTER X
 This page describes how to create Database Availability Group and add some additional monitor resources of EXPRESSCLUSTER X.
 
 ## Evaluation Environment
