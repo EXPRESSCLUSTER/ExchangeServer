@@ -356,7 +356,7 @@ add the only new created appli-control-AD  and click Add.
 Click OK.  
   
    <p align="center">
-  <img src="Stop-Tunning-appli-control-DB.PNG")
+  <img src="Dpncy_Mirror_disk.PNG")
   </p>
 
 
