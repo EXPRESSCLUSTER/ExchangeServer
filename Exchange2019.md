@@ -103,16 +103,12 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
 		- Data Partition: E drive
 	- application resource 1
 		- For exchange application resource to Control a Mailbox Database
-
-	-  application resource 2
+	- application resource 2
 		- For exchange application resource to Control a Mailbox Database
-	
-        -  application resource 3 	
-                - For exchange application resource to Control a Mailbox Database
+        - application resource 3
+		- For exchange application resource to Control a Mailbox Database
 		
- 
 	
-
 ## Setup
 In this section we can describe how to setup Exchange Server with Expresscluster 4.3 
 
