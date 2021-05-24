@@ -5,7 +5,7 @@ Reference
 EXPRESSCLUSTER 
 - For more information, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
 
-## Exchange 2019 prerequisites :-
+## Exchange 2019 prerequisites 
 
 For more information, please visit microsoft [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019)
 
@@ -101,12 +101,17 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
 	- md
 		- Cluster Partition: X drive
 		- Data Partition: E drive
-	- service1
-		- For ******************************
-	- service2
-		- For ******************************
-	- **Note**
-		- need to enable SQL Server Browser service, add one more service If you resource (service3)
+	- application resource 1
+		- For exchange application resource to Control a Mailbox Database
+
+	-  application resource 2
+		- For exchange application resource to Control a Mailbox Database
+	
+        -  application resource 3 	
+                - For exchange application resource to Control a Mailbox Database
+		
+ 
+	
 
 ## Setup
 In this section we can describe how to setup Exchange Server with Expresscluster 4.3 
@@ -391,7 +396,14 @@ the cluster is not running, click the Service menu, and then click Start Cluster
 **Note**
 There is no need to make changes to Microsoft Outlook or OWA.
 
-
+## Testing Cluster Functionality
+	   
+-  Move the failover group to the Standby Server . Monitor the failover
+   process in the Cluster Manager window. Verify that email clients are still able to
+   connect to the mailbox database.
+   
+-  Move back the failover group to the Primary Server. Verify that email
+   clients are still able to connect to the mailbox database.
 
 
 
