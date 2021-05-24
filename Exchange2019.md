@@ -403,9 +403,10 @@ There is no need to make changes to Microsoft Outlook or OWA.
 
 	   
 	   
-	   **Note:-**
+ **Note:-**
+	   
 	 In the case that the appli-check-service fails, you will have to go to services.msc and ensure that all Exchange services are running automatically.
-	   and you can also check scrpl0(C:\Program Files\EXPRESSCLUSTER\log) logs for help.
+	 and you can also check scrpl0(C:\Program Files\EXPRESSCLUSTER\log) logs for help.
 
 
 
