@@ -1,9 +1,7 @@
-## Microsoft Exchange server 2019 (CU11) on windows cluster ECX4.3
+# Microsoft Exchange server 2019 (CU11) on windows cluster ECX4.3
+This page describes how you create Exchange Server 2019 cluster with EXPRESSCLUSTER X.
 
-Reference
-
-EXPRESSCLUSTER 
-- For more information, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
+- For more information regarding EXPRESSCLUSTER X, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
 
 ## Exchange 2019 prerequisites 
 
@@ -50,18 +48,18 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
 
 
 ### Requirements
-- All Primary Server, Secondary Server and Client machine sould be reachable with IP address.
+- All Primary Server, Secondary Server and Client machine should be reachable with IP address.
 - In order to use fip resource, both servers should belong a same nework.
 	- If each server belongs to a different network, you can use ddns resource with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of fip address.
-- Ports which EXPRESSCLUSTER requires should be opend.
-	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers
+- Ports which EXPRESSCLUSTER requires should be opened.
+	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2 and X4.3](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers
 - 2 partitions are required for Mirror Disk Data Partition and Cluster Partition.
 	- Data Partition: Depends on mirrored data size (NTFS)
 	- Cluster Partition: 1GB, RAW (do not format this partition)
 	- **Note**
 		- It is not supported to mirror C: drive and please do NOT sprecify C: for Data Partition.
 		- Dynamic disk is not supported for Data Partition and Cluster Partition.
-		- Data on Secondary Server Data Partition will be removed for initial Mirror Disk synchroniation (Initial Recovery).
+		- Data on Secondary Server Data Partition will be removed for initial Mirror Disk synchronization (Initial Recovery).
 		
 		
 ### Sample configuration
@@ -87,13 +85,13 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
 
 - IP address  
 
-| |Public IP |Private IP |
-|-----------------|-----------------|-----------------|
-|Primary Server |10.0.7.11 |192.168.1.11 |
-|Secondary Server |10.0.7.12 |192.168.1.12 |
-|fip |10.0.7.21 |- |
-|Client |10.0.7.51 |- |
-|Gateway |10.0.7.1 |- |
+  | |Public IP |Private IP |
+  |-----------------|-----------------|-----------------|
+  |Primary Server |10.0.7.11 |192.168.1.11 |
+  |Secondary Server |10.0.7.12 |192.168.1.12 |
+  |fip |10.0.7.21 |- |
+  |Client |10.0.7.51 |- |
+  |Gateway |10.0.7.1 |- |
 
 ## Cluster configuration
 - failover group
@@ -102,68 +100,60 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
 		- Cluster Partition: X drive
 		- Data Partition: E drive
 	- application resource 1
-		- For exchange application resource to Control a Mailbox Database
 	- application resource 2
-		- For exchange application resource to Control a Mailbox Database
-        - application resource 3
-		- For exchange application resource to Control a Mailbox Database
+  - application resource 3
+    - For exchange application resource to Control a Mailbox Database
 		
 	
 ## Setup
-In this section we can describe how to setup Exchange Server with Expresscluster 4.3 
+In this section we can describe how to setup Exchange Server with EXPRESSCLUSTER 4.3 
 
 ### Setup a basic cluster
 Please refer [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md)
 
 ### Install Exchange 2019 Server
 
-- For Exchange installationa and configuration, please visit [this site](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
+- For Exchange installation and configuration, please visit [this site](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
 
- ### 1.1 Modify the Powershell script execution policy to execute the script.
+### 1.1 Modify the Powershell script execution policy to execute the script.
   
- - Launch PowerShell on the Primary Server.
+- Launch PowerShell on the Primary Server.
  
- - Use Get-ExecutionPolicy to check the current script execution policy.
+- Use Get-ExecutionPolicy to check the current script execution policy.
  
- - Set the execution policy to RemoteSigned or Unrestricted using SetExecutionPolicy in order to run EC failover scripts.
+- Set the execution policy to RemoteSigned or Unrestricted using SetExecutionPolicy in order to run EC failover scripts.
          
-		 PS> Set-ExecutionPolicy RemoteSigned
+		PS> Set-ExecutionPolicy RemoteSigned
 
- - Repeat this process on the Standby Server.
+- Repeat this process on the Standby Server.
 
- ### 1.2 Make a duplicate copy of RemoteExchange.ps1 and modify the copy as follows
+### 1.2 Make a duplicate copy of RemoteExchange.ps1 and modify the copy as follows
 
- - Navigate to the Exchange ‘Bin’ folder (e.g. C:\Program Files\Microsoft\Exchange Server\V15\Bin) on the Primary Server.
+- Navigate to the Exchange ‘Bin’ folder (e.g. C:\Program Files\Microsoft\Exchange Server\V15\Bin) on the Primary Server.
  
- - Make a duplicate Copy of RemoteExchange.ps1 to the same folder and rename the copy to
-RemoteExchange-ECX.ps1.
+- Make a duplicate Copy of RemoteExchange.ps1 to the same folder and rename the copy to RemoteExchange-ECX.ps1.
  
- - Edit RemoteExchange-ECX.ps1 by adding the line .\ControlMailboxDatabase.ps1
-   to the section where the functions are called. Comment out get-banner and get-tip
-   in this section. Also add the error handling code as shown in the example below.
+- Edit RemoteExchange-ECX.ps1 by adding the line .\ControlMailboxDatabase.ps1 to the section where the functions are called. Comment out get-banner and get-tip in this section. Also add the error handling code as shown in the example below.
    
-   
- now actually call the functions
-        
-        #get-exbanner
-        #get-tip
-        $ErrorControlMailboxDatabase = 90
-        .\ControlMailboxDatabase.ps1
-        $bRet = $?
-        if ($bRet –eq $False)
-        {
-        exit $ErrorControlMailboxDatabase
-        }
+  now actually call the functions
+
+      #get-exbanner
+      #get-tip
+      $ErrorControlMailboxDatabase = 90
+      .\ControlMailboxDatabase.ps1
+      $bRet = $?
+      if ($bRet –eq $False)
+      {
+      exit $ErrorControlMailboxDatabase
+      }
 
 - Repeat this process on the Standby Server
 
 
 
-## 2     Cluster Setup 
+## Cluster Setup 
 
-#### On Primary Server
-
--  Confirm that the failover group is active on the primary server.
+- Confirm that the failover group is active on the primary server.
 
 ### 2.1 Check and stop service Microsoft Exchange Search Host Controller on both servers.
 
@@ -177,7 +167,7 @@ select Properties.
 
 ### 2.2 Copy and configure failover scripts
 
-- Download the script files from [NEC web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html.)
+- Download the script files from [NEC web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html).
 
 - Copy all script files to the EXPRESSCLUSTER bin folder (example. C:\Program
 Files\EXPRESSCLUSTER\bin) on the Primary Server.
@@ -201,8 +191,7 @@ your environment.
 
 - In the Cluster Manager window, choose Config Mode.
 
-- Right-click on the %failover group%, and then click Add Resource to add the first(1st)
-  application resource
+- Right-click on the %failover group%, and then click Add Resource to add the first(1st) application resource
   
 - From the drop down list, select application resource for Type, and give a name to
   the resource (example: appli-check-service). Click Next.
@@ -213,9 +202,11 @@ your environment.
   Failover Threshold first if necessary.
 
 - Check Non-Resident and set the following parameter for Start Path.
+  ```
   Start Path    : CheckExchangeServices01.bat
   Stop Path     : (NULL)
   Resident Type : Non-Resident
+  ```
 
 <p align="center">
 <img src="Dpncy_appli_check_service.PNG")
@@ -225,13 +216,13 @@ your environment.
   3600 for Start on the Parameter tab (see Note below). Click OK and then click Finish.
   
  **Note**
-
-	The 1st application resource (example. appli-check-service) uses the following parameters in SetEnvironment.bat to wait for all Exchange services to be running.
-         RetryCount : 30
-         RetryInterval : 60
-    By default, the application resource waits 1800 (= RetryCount x RetryInterval)seconds for all Exchange services to be running. If any services are not running, the
-    application resource starts them and waits 1800 seconds for them to be running.Services can take up to 3600 seconds to start. It is recommended to set the Timeout value to 3600 or longer (= RetryCount x RetryInterval + some buffer).
-
+  ```
+  The 1st application resource (example. appli-check-service) uses the following parameters in SetEnvironment.bat to wait for all Exchange services to be running.
+        RetryCount : 30
+        RetryInterval : 60
+  By default, the application resource waits 1800 (= RetryCount x RetryInterval)seconds for all Exchange services to be running. If any services are not running, the
+  application resource starts them and waits 1800 seconds for them to be running. Services can take up to 3600 seconds to start. It is recommended to set the Timeout value to 3600 or longer (= RetryCount x RetryInterval + some buffer).
+  ```
 
 	
 **STEP :-2**
@@ -254,15 +245,16 @@ your environment.
   Failover Threshold first if necessary.
   
 - Check Non-Resident and set the following parameter for Start Path.
-
-   Start Path : ControlActiveDirectory01.bat 
-   Stop Path : (NULL)
+  ```
+  Start Path : ControlActiveDirectory01.bat 
+  Stop Path : (NULL)
+  ```
 
 <p align="center">
 <img src="Details-appli-control-AD.PNG")
 </p>   
 	
--  Click Tuning and set 0 for Normal Return Value of Start on the Parameter tab.
+- Click Tuning and set 0 for Normal Return Value of Start on the Parameter tab.
 
 - In tunning page click on start tab 
              
@@ -272,12 +264,12 @@ your environment.
 <img src="Start-Tunning-appli-control-AD.PNG")
 </p>
 
--  Click the Start tab and set the following parameters.
-          
-		  Domain   : your domain name
-          Account  : a user belonging to the Schema Admins group
-          Password : password for the above user
-
+- Click the Start tab and set the following parameters.
+    ```  
+    Domain   : your domain name
+    Account  : a user belonging to the Schema Admins group
+    Password : password for the above user
+    ```
 - Click OK and then click Finish.
 
 
@@ -303,10 +295,10 @@ your environment.
    Failover Threshold first if necessary.
    
 - Check Non-Resident and set the following parameters for Start Path and Stop Path.
-                
-				Start Path : ControlMailboxDatabase01.bat 
-                Stop Path : ControlMailboxDatabase01.bat 
-				
+    ```          
+    Start Path : ControlMailboxDatabase01.bat 
+    Stop Path : ControlMailboxDatabase01.bat 
+    ```
 	
   <p align="center">
   <img src="Details-appli-control-DB.PNG")
@@ -318,25 +310,24 @@ your environment.
   Parameter tab.
 
 - Click the Start tab and set the following parameters.
-     
-	 
-	 
-	    Option parameter: <Mailbox database name> Mount
-	    Domain : your domain name
-        Account : a user belonging to the Organization    Management1   group
-        Password : password of the above user
-	 
+    ```
+    Option parameter: <Mailbox database name> Mount
+    Domain          : your domain name
+    Account         : a user belonging to the Organization Management group
+    Password        : password of the above user
+    ```
 		
   <p align="center">
   <img src="Start-Tunning-appli-control-DB.PNG")
   </p>		
 		 
 - Click the Stop tab and set the following parameters.
-             
-			 Option parameter:  <Mailbox database name> Dismount
-	         Domain          : your domain name
-             Account         : a user belonging to the          Management group       
-             Password        : password of the above user
+    ```
+    Option parameter: <Mailbox database name> Dismount
+    Domain          : your domain name
+    Account         : a user belonging to the Organization Management group
+    Password        : password of the above user
+    ```
     
   <p align="center">
   <img src="Stop-Tunning-appli-control-DB.PNG")
@@ -350,8 +341,8 @@ your environment.
 
 - Right-click the mirror disk resource (md) and click Properties.
 
-- Select the Dependency tab and uncheck Follow the default      dependency. 
-add the only new created appli-control-AD  and click Add.
+- Select the Dependency tab and uncheck Follow the default dependency. 
+add the only new created appli-control-AD and click Add.
 
 Click OK.  
   
@@ -394,7 +385,7 @@ There is no need to make changes to Microsoft Outlook or OWA.
 
 ## Testing Cluster Functionality
 	   
--  Move the failover group to the Standby Server . Monitor the failover
+-  Move the failover group to the Standby Server. Monitor the failover
    process in the Cluster Manager window. Verify that email clients are still able to
    connect to the mailbox database.
    
