@@ -1,9 +1,9 @@
-# Microsoft Exchange server 2019 (CU11) on windows cluster ECX4.3
+# Microsoft Exchange Server 2019 (CU11) on Windows Cluster ECX4.3
 This page describes how you create Exchange Server 2019 cluster with EXPRESSCLUSTER X.
 
 - For more information regarding EXPRESSCLUSTER X, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
 
-## Exchange 2019 prerequisites 
+## Exchange 2019 Prerequisites 
 
 For more information, please visit microsoft [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019)
 
@@ -11,7 +11,7 @@ Alternative Link
 
 For more information, please visit [this site](https://msexperttalk.com/part-2-install-and-configure-exchange-server-2019/)
 
-## System configuration
+## System Configuration
 - Servers: 2 node with Mirror Disk
 - OS: Windows Server 2019
 - SW:
@@ -62,7 +62,7 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
 		- Data on Secondary Server Data Partition will be removed for initial Mirror Disk synchronization (Initial Recovery).
 		
 		
-### Sample configuration
+### Sample Configuration
 - Primary/Secondary Server
 	- OS: Windows Server 2019
 	- EXPRESSCLUSTER X: 4.2 or 4.3
@@ -93,7 +93,7 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
   |Client |10.0.7.51 |- |
   |Gateway |10.0.7.1 |- |
 
-## Cluster configuration
+## Cluster Configuration
 - failover group
 	- fip
 	- md
@@ -108,7 +108,7 @@ For more information, please visit [this site](https://msexperttalk.com/part-2-i
 ## Setup
 In this section we can describe how to setup Exchange Server with EXPRESSCLUSTER 4.3 
 
-### Setup a basic cluster
+### Setup a Basic Cluster
 Please refer [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md)
 
 ### Install Exchange 2019 Server
