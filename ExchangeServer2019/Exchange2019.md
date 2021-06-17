@@ -159,8 +159,24 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 - Confirm that the **%failover group%** is active on the **Primary Server**.
 
-### 2.1 Move the Mailbox Database to the Mirror Disk
+### 2.1 Move the Mailbox Database to the Mirror Disk    
+Note - This is a good opportunity to rename the mailbox database from the long default name.
+1. Create a folder (Mailbox Folder) on the Mirror Disk **Data Partition** (example: _E:\Mailbox Folder_).
+2. Before moving the Mailbox Database and LogFolderPath, make a backup copy of all files to be moved.
+3. Once the backup is made, open **Exchange Management Shell** as administrator.
+4. Run the following command at the prompt:
+````
+      Move-DatabasePath –Identity <MDB name> -EdbFilePath <new path to .edb file> -LogFolderPath <new path to folder>
+      
+      Example: Move-DatabasePath –Identity “LongfilenameMailbox” –EdbFilePath “E:\Mailbox Folder\Mailbox01.edb” –LogFolderPath “E:\Mailbox Folder”
+````
+5. Next run the following command at the prompt:    
 
+	   Set-MailboxDatabase –Identity <MDB name> –MountAtStartup $False
+
+7. To verify the change, run the command:
+
+	   Get-MailboxDatabase <MDB name> | Fl Name,*Path*
 
 ### 2.2 Check and stop service Microsoft Exchange Search Host Controller on both servers.
 
@@ -168,16 +184,14 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 2. Type **services.msc** and click **OK** to open the **Services** management console.
 3. Right-click on the service **Microsoft Exchange Search Host Controller** and then select **Properties**.
 4. Set the **Startup type** to **Disabled** and then **Stop** the service.
-
-- Repeat this process on the **Standby Server** (Machine 2).
+5. Repeat this process on the **Standby Server** (Machine 2).
 
 ### 2.3 Copy and configure failover scripts
 
 1. Download the script files from the **Exchange Server** section of the [NEC EXPRESSCLUSTER web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html). 
 2. Copy all script files to the **EXPRESSCLUSTER bin** folder (example. _C:\ProgramFiles\EXPRESSCLUSTER\bin_) on the **Primary Server**.
 3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
-
-- Repeat the previous two steps on the **Standby Server**.
+4. Repeat the previous two steps on the **Standby Server**.
 
     **Note** - 
 				
