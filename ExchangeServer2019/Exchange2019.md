@@ -155,13 +155,14 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 ````
 4. Repeat this process on the **Standby Server**.
 
-
-
 ## Cluster Setup 
 
 - Confirm that the **%failover group%** is active on the **Primary Server**.
 
-### 2.1 Check and stop service Microsoft Exchange Search Host Controller on both servers.
+### 2.1 Move the Mailbox Database to the Mirror Disk
+
+
+### 2.2 Check and stop service Microsoft Exchange Search Host Controller on both servers.
 
 1. Right-click **Start** on the desktop and then click **Run** on the **Primary Server** (Machine 1).
 2. Type **services.msc** and click **OK** to open the **Services** management console.
@@ -170,7 +171,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 - Repeat this process on the **Standby Server** (Machine 2).
 
-### 2.2 Copy and configure failover scripts
+### 2.3 Copy and configure failover scripts
 
 1. Download the script files from the **Exchange Server** section of the [NEC EXPRESSCLUSTER web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html). 
 2. Copy all script files to the **EXPRESSCLUSTER bin** folder (example. _C:\ProgramFiles\EXPRESSCLUSTER\bin_) on the **Primary Server**.
@@ -182,7 +183,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 				
     One of the scripts requires that the **Active Directory module for Windows PowerShell** feature is installed. Verify this on both servers before continuing by opening the **Add Roles and Features Wizard**, and from **Features** check the following: _Remote Server Administration Tools > Role Administration Tools > AD DS and AD LDS Tools > Active Directory Module for Windows PowerShell_.
 
-### 2.3 Adding Application Resources in ECX cluster to Control a Exchnage Mailbox Database 
+### 2.4 Add Application Resources in ECX cluster to Control an Exchange Mailbox Database 
   
 **STEP :- 1**
 
