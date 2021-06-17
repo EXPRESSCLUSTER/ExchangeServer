@@ -5,7 +5,7 @@ This page describes how to create an Exchange Server 2019 cluster with EXPRESSCL
 
 ## Exchange 2019 Prerequisites 
 
-For more information, please see Microsoft documentation at [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019)
+For more information on preparing Active Directory and Windows Server 2019 for Exchange Server 2019, please see Microsoft documentation at [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019)
 
 [Alternative Link](https://msexperttalk.com/part-2-install-and-configure-exchange-server-2019/)
 
@@ -48,16 +48,16 @@ For more information, please see Microsoft documentation at [this site](https://
 ### Requirements
 - The Primary Server, Secondary Server and Client machine should be reachable via IP addresses.
 - In order to use the fip resource, both servers should belong to the same nework.
-	- If each server belongs to a different network, you can use [ddns resource](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-dynamic-dns-resources) with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of an fip address.
+	- If each server belongs to a different network, you can use a [ddns resource](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-dynamic-dns-resources) with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of an fip address.
 - Ports which EXPRESSCLUSTER requires should be opened.
 	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2 and X4.3](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers
 - 2 partitions are required for Mirror Disk Data Partition and Cluster Partition.
 	- Data Partition: Depends on mirrored data size (NTFS)
 	- Cluster Partition: 1GB, RAW (do not format this partition)
 	- **Note**
-		- It is not supported to mirror C: drive and please do NOT sprecify C: for Data Partition.
+		- It is not supported to mirror the C: drive and please do NOT specify C: for the Data Partition.
 		- Dynamic disk is not supported for Data Partition and Cluster Partition.
-		- Data on Secondary Server Data Partition will be removed for initial Mirror Disk synchronization (Initial Recovery).
+		- Data on the Secondary Server's Data Partition will be removed for initial Mirror Disk synchronization (Initial Recovery).
 		
 		
 ### Sample Configuration
@@ -65,15 +65,17 @@ For more information, please see Microsoft documentation at [this site](https://
 	- OS: Windows Server 2019
 	- EXPRESSCLUSTER X: 4.2 or 4.3
 	- CPU: 2
-	- Memory: 8MB
+	- Memory: 8GB
 	- Disk
 		- Disk0: System Drive
 			- C:
 		- Disk1: Mirror Disk
 			- X:
+			        Cluster Partition
 				- Size: 1GB
 				- File system: RAW (do NOT format)
 			- E:
+			        Data Partition
 				- Size: Depending on data size
 				- File system: NTFS
 - Required Licenses
@@ -94,24 +96,28 @@ For more information, please see Microsoft documentation at [this site](https://
 ## Cluster Configuration
 - failover group
 	- fip
+	- vcom (optional)
 	- md
 		- Cluster Partition: X drive
 		- Data Partition: E drive
 	- application resource 1
+	    - Exchange application resource to check if all Exchange services are running
 	- application resource 2
-  - application resource 3
-    - For exchange application resource to Control a Mailbox Database
+	    - Exchange application resource to change AD parameters for a mailbox database
+	- application resource 3
+	    - Exchange application resource to control a Mailbox Database
 		
 	
 ## Setup
-In this section we can describe how to setup Exchange Server with EXPRESSCLUSTER 4.3 
+This section describes how to set up an Exchange Server with EXPRESSCLUSTER 4.3 
 
-### Setup a Basic Cluster
-Please refer [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md)
+### Set up a Basic Cluster
+Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md)
 
 ### Install Exchange 2019 Server
 
-- For Exchange installation and configuration, please visit [this site](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
+- For Exchange installation and configuration, please visit [this Microsoft site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/deploy-new-installations?view=exchserver-2019)
+- [Alternative link](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
 
 ### 1.1 Modify the Powershell script execution policy to execute the script.
   
