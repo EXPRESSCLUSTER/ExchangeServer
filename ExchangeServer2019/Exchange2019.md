@@ -5,11 +5,9 @@ This page describes how to create an Exchange Server 2019 cluster with EXPRESSCL
 
 ## Exchange 2019 Prerequisites 
 
-For more information, please visit microsoft [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019)
+For more information, please see Microsoft documentation at [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019)
 
-Alternative Link 
-
-For more information, please visit [this site](https://msexperttalk.com/part-2-install-and-configure-exchange-server-2019/)
+[Alternative Link](https://msexperttalk.com/part-2-install-and-configure-exchange-server-2019/)
 
 ## System Configuration
 - Servers: 2 node with Mirror Disk
