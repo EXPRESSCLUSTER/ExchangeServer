@@ -1,5 +1,5 @@
-# Microsoft Exchange Server 2019 (CU11) on Windows Cluster ECX4.3
-This page describes how you create Exchange Server 2019 cluster with EXPRESSCLUSTER X.
+# Microsoft Exchange Server 2019 (CU9) on Windows Cluster ECX4.3
+This page describes how to create an Exchange Server 2019 cluster with EXPRESSCLUSTER X.
 
 - For more information regarding EXPRESSCLUSTER X, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
 
