@@ -112,12 +112,14 @@ For more information on preparing Active Directory and Windows Server 2019 for E
 This section describes how to set up an Exchange Server with EXPRESSCLUSTER 4.3. 
 
 ### Set up a Basic Cluster
-Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md). [vcom setup info here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-virtual-computer-name-resources)
+Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md).   
+- vcom [setup info here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-virtual-computer-name-resources)
 
 ### Install Exchange 2019 Server
 
-- For Exchange installation and configuration, please visit [this Microsoft site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/deploy-new-installations?view=exchserver-2019).
-- [Alternative link](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
+For Exchange installation and configuration, please visit [this Microsoft site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/deploy-new-installations?view=exchserver-2019).
+
+[Alternative link](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
 
 ### 1.1 Modify the Powershell script execution policy to execute the script.
   
@@ -125,21 +127,21 @@ Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicClu
  
 2. Use _Get-ExecutionPolicy_ to check the current server's script execution policy.
  
-3. Set the execution policy to **RemoteSigned** or **Unrestricted** using SetExecutionPolicy in order to run EC failover scripts.
+3. Set the execution policy to **RemoteSigned** or **Unrestricted** using _Set-ExecutionPolicy_ in order to run EC failover scripts.
          
 		PS> Set-ExecutionPolicy RemoteSigned
 
-- Repeat this process on the Standby Server.
+- Repeat this process on the **Standby Server**.
 
 ### 1.2 Make a duplicate copy of RemoteExchange.ps1 and modify the copy as follows
 
-- Navigate to the Exchange ‘Bin’ folder (e.g. C:\Program Files\Microsoft\Exchange Server\V15\Bin) on the Primary Server.
+1. Navigate to the Exchange ‘Bin’ folder (e.g. C:\Program Files\Microsoft\Exchange Server\V15\Bin) on the **Primary Server**.
  
-- Make a duplicate Copy of RemoteExchange.ps1 to the same folder and rename the copy to RemoteExchange-ECX.ps1.
+2. Make a duplicate Copy of **RemoteExchange.ps1** to the same folder and rename the copy to **RemoteExchange-ECX.ps1**.
  
-- Edit RemoteExchange-ECX.ps1 by adding the line .\ControlMailboxDatabase.ps1 to the section where the functions are called. Comment out get-banner and get-tip in this section. Also add the error handling code as shown in the example below.
-   
-  now actually call the functions
+3. Edit **RemoteExchange-ECX.ps1** by scrolling down to the section where the functions are called and commenting out **get-banner** and **get-tip**. Then add the error handling code with the line _.\ControlMailboxDatabase.ps1_ as shown in the example below: 
+````   
+      ## now actually call the functions
 
       #get-exbanner
       #get-tip
@@ -150,8 +152,8 @@ Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicClu
       {
       exit $ErrorControlMailboxDatabase
       }
-
-- Repeat this process on the Standby Server
+````
+4. Repeat this process on the **Standby Server**.
 
 
 
