@@ -1,11 +1,11 @@
 # Microsoft Exchange Server 2019 (CU9) on Windows Cluster ECX 4.3
 This page describes how to create an Exchange Server 2019 cluster with EXPRESSCLUSTER X.
 
-- For more information regarding EXPRESSCLUSTER X, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
+- For more information regarding EXPRESSCLUSTER X, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html).
 
 ## Exchange 2019 Prerequisites 
 
-For more information on preparing Active Directory and Windows Server 2019 for Exchange Server 2019, please see Microsoft documentation at [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019)
+For more information on preparing Active Directory and Windows Server 2019 for Exchange Server 2019, please see Microsoft documentation at [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019).
 
 [Alternative Link](https://msexperttalk.com/part-2-install-and-configure-exchange-server-2019/)
 
@@ -50,8 +50,8 @@ For more information on preparing Active Directory and Windows Server 2019 for E
 - In order to use the fip resource, both servers should belong to the same nework.
 	- If each server belongs to a different network, you can use a [ddns resource](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-dynamic-dns-resources) with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of an fip address.
 - Ports which EXPRESSCLUSTER requires should be opened.
-	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2 and X4.3](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers
-- 2 partitions are required for Mirror Disk Data Partition and Cluster Partition.
+	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2 and X4.3](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers.
+- 2 partitions are required, one for Mirror Disk Data Partition and one for Cluster Partition.
 	- Data Partition: Depends on mirrored data size (NTFS)
 	- Cluster Partition: 1GB, RAW (do not format this partition)
 	- **Note**
@@ -109,23 +109,23 @@ For more information on preparing Active Directory and Windows Server 2019 for E
 		
 	
 ## Setup
-This section describes how to set up an Exchange Server with EXPRESSCLUSTER 4.3 
+This section describes how to set up an Exchange Server with EXPRESSCLUSTER 4.3. 
 
 ### Set up a Basic Cluster
-Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md)
+Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md). [vcom setup info here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-virtual-computer-name-resources)
 
 ### Install Exchange 2019 Server
 
-- For Exchange installation and configuration, please visit [this Microsoft site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/deploy-new-installations?view=exchserver-2019)
+- For Exchange installation and configuration, please visit [this Microsoft site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/deploy-new-installations?view=exchserver-2019).
 - [Alternative link](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
 
 ### 1.1 Modify the Powershell script execution policy to execute the script.
   
-- Launch PowerShell on the Primary Server.
+1. Launch **PowerShell** on the **Primary Server**.
  
-- Use Get-ExecutionPolicy to check the current script execution policy.
+2. Use _Get-ExecutionPolicy_ to check the current server's script execution policy.
  
-- Set the execution policy to RemoteSigned or Unrestricted using SetExecutionPolicy in order to run EC failover scripts.
+3. Set the execution policy to **RemoteSigned** or **Unrestricted** using SetExecutionPolicy in order to run EC failover scripts.
          
 		PS> Set-ExecutionPolicy RemoteSigned
 
