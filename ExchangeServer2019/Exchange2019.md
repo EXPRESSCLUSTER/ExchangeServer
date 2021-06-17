@@ -1,4 +1,4 @@
-# Microsoft Exchange Server 2019 (CU9) on Windows Cluster ECX4.3
+# Microsoft Exchange Server 2019 (CU9) on Windows Cluster ECX 4.3
 This page describes how to create an Exchange Server 2019 cluster with EXPRESSCLUSTER X.
 
 - For more information regarding EXPRESSCLUSTER X, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html)
@@ -10,10 +10,10 @@ For more information, please see Microsoft documentation at [this site](https://
 [Alternative Link](https://msexperttalk.com/part-2-install-and-configure-exchange-server-2019/)
 
 ## System Configuration
-- Servers: 2 node with Mirror Disk
+- Servers: 2 nodes with 1 Mirror Disk each
 - OS: Windows Server 2019
 - SW:
-	- Exchange Server 2019 CU 11
+	- Exchange Server 2019 CU 9
 	- EXPRESSCLUSTER X 4.0/4.1/4.2/4.3
 
 ```bat
@@ -46,9 +46,9 @@ For more information, please see Microsoft documentation at [this site](https://
 
 
 ### Requirements
-- All Primary Server, Secondary Server and Client machine should be reachable with IP address.
-- In order to use fip resource, both servers should belong a same nework.
-	- If each server belongs to a different network, you can use ddns resource with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of fip address.
+- The Primary Server, Secondary Server and Client machine should be reachable via IP addresses.
+- In order to use the fip resource, both servers should belong to the same nework.
+	- If each server belongs to a different network, you can use [ddns resource](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-dynamic-dns-resources) with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of an fip address.
 - Ports which EXPRESSCLUSTER requires should be opened.
 	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2 and X4.3](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers
 - 2 partitions are required for Mirror Disk Data Partition and Cluster Partition.
