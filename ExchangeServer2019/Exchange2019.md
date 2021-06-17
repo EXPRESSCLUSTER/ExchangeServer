@@ -159,17 +159,16 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 ## Cluster Setup 
 
-- Confirm that the failover group is active on the primary server.
+- Confirm that the **%failover group%** is active on the **Primary Server**.
 
 ### 2.1 Check and stop service Microsoft Exchange Search Host Controller on both servers.
 
-- Right-click Start and then click Run.(Machine 1)
-- Type services.msc and click OK to open the Services management console.
-- Right-click on the service Microsoft Exchange Search Host Controller and then
-select Properties.
--  Set the Startup type to Disabled and then Stop the service.
+1. Right-click **Start** on the desktop and then click **Run** on the **Primary Server** (Machine 1).
+2. Type **services.msc** and click **OK** to open the **Services** management console.
+3. Right-click on the service **Microsoft Exchange Search Host Controller** and then select **Properties**.
+4. Set the **Startup type** to **Disabled** and then **Stop** the service.
 
-- Repeat this process on the Standby Server (Machine 2)
+- Repeat this process on the **Standby Server** (Machine 2).
 
 ### 2.2 Copy and configure failover scripts
 
