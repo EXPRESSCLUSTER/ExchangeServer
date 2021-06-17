@@ -172,18 +172,15 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 ### 2.2 Copy and configure failover scripts
 
-- Download the script files from [NEC web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html).
+1. Download the script files from the **Exchange Server** section of the [NEC EXPRESSCLUSTER web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html). 
+2. Copy all script files to the **EXPRESSCLUSTER bin** folder (example. _C:\ProgramFiles\EXPRESSCLUSTER\bin_) on the **Primary Server**.
+3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
 
-- Copy all script files to the EXPRESSCLUSTER bin folder (example. C:\Program
-Files\EXPRESSCLUSTER\bin) on the Primary Server.
+- Repeat the previous two steps on the **Standby Server**.
 
-- Open SetEnvironment.bat with a text editor and change the parameters to match
-your environment.
-- Repeat the previous two steps on the Standby Server.
-
-- **Note** - 
+    **Note** - 
 				
-	  One of the scripts requires that the Active Directory module for Windows.PowerShell feature is installed. Verify this on both servers before continuing by accessing: Remote Server Administration Tools > Role Administration Tools > AD DS and AD LDS Tools > Active Directory Module for Windows PowerShell
+    One of the scripts requires that the **Active Directory module for Windows PowerShell** feature is installed. Verify this on both servers before continuing by opening the **Add Roles and Features Wizard**, and from **Features** check the following: _Remote Server Administration Tools > Role Administration Tools > AD DS and AD LDS Tools > Active Directory Module for Windows PowerShell_.
 
 ### 2.3 Adding Application Resources in ECX cluster to Control a Exchnage Mailbox Database 
   
