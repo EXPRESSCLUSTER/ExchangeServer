@@ -375,7 +375,7 @@ Please refer to the image below to review the dependencies.
 5. If the **%failover group%** is not running, click on the triangle icon (Start Group) button below the **Primary Server**'s column. You also may need to start each of the three new services the same way. Once all resources are started, the mailbox database will mount on this server and email clients can now connect.
 
 
-**Note**    
+**Note** -   
 
 In the case that the **appli-check-service** fails or takes too long to start, start services.msc on the active server and ensure that all Exchange services are running automatically. Start all services that should be running. You can also check scrpl0 logs (C:\Program Files\EXPRESSCLUSTER\log) for troubleshooting help.
 
