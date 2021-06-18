@@ -203,22 +203,19 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 
 ### Adding 1st application resource [example: appli-check-service]
 
+1. Start the ECX Cluster webui manager.
 
-- Start the ECX Cluster webui manager.
+2. In the **Cluster Manager** window, choose **Config mode**.
 
-- In the Cluster Manager window, choose Config Mode.
-
-- Right-click on the %failover group%, and then click Add Resource to add the first(1st) application resource
+3. Click on the "+" symbol to the right of the **%failover group%** to add the first (1st) application resource.
   
-- From the drop down list, select application resource for Type, and give a name to
-  the resource (example: appli-check-service). Click Next.
+4. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: appli-check-service). Click **Next**.
 
-- Uncheck Follow the default dependency and click Next.
+5. Uncheck **Follow the default dependency** and click **Next**.
 
-- Click Next if the default values are acceptable. Make changes to Retry Count or
-  Failover Threshold first if necessary.
+6. Click **Next** if the default values are acceptable. Make changes to **Retry Count** or **Failover Threshold** first if necessary.
 
-- Check Non-Resident and set the following parameter for Start Path.
+7. Select **Non-Resident** and set the following parameter for **Start Path**:
   ```
   Start Path    : CheckExchangeServices01.bat
   Stop Path     : (NULL)
@@ -229,8 +226,7 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 <img src="Dpncy_appli_check_service.PNG")
 </p>
 
-- Click Tuning and set 0 for Normal Return Value and set a Timeout value of at least
-  3600 for Start on the Parameter tab (see Note below). Click OK and then click Finish.
+8. Click **Tuning** and set **0** for **Normal Return Value**. Set a **Timeout** value of at least **3600** for **Start** on the **Parameter** tab (see Note below). Click **OK** and then click **Finish**.
   
  **Note**
   ```
