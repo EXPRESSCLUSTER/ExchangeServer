@@ -377,7 +377,7 @@ Please refer to the image below to review the dependencies.
 
 **Note** -   
 
-In the case that the **appli-check-service** fails or takes too long to start, start services.msc on the active server and ensure that all Exchange services are running automatically. Start all services that should be running. You can also check scrpl0 logs (C:\Program Files\EXPRESSCLUSTER\log) for troubleshooting help.
+In the case that the **appli-check-service** fails or takes too long to start, start services.msc on the active server and ensure that all Exchange services are running automatically. Start all services that should be running. You can also check **scrpl0** logs (_C:\Program Files\EXPRESSCLUSTER\log_) for troubleshooting help.
 
 There is no need to make changes to Microsoft Outlook or OWA.
 
