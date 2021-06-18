@@ -209,7 +209,7 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 
 3. Click on the "+" symbol to the right of the **%failover group%** to add the first (1st) application resource.
   
-4. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: appli-check-service). Click **Next**.
+4. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-check-service_). Click **Next**.
 
 5. Uncheck **Follow the default dependency** and click **Next**.
 
@@ -230,34 +230,32 @@ Note - This is a good opportunity to rename the mailbox database from the long d
   
  **Note**
   ```
-  The 1st application resource (example. appli-check-service) uses the following parameters in SetEnvironment.bat to wait for all Exchange services to be running.
+  The 1st application resource (example. appli-check-service) uses the following parameters in SetEnvironment.bat to wait
+  for all Exchange services to be running.
         RetryCount : 30
         RetryInterval : 60
-  By default, the application resource waits 1800 (= RetryCount x RetryInterval)seconds for all Exchange services to be running. If any services are not running, the
-  application resource starts them and waits 1800 seconds for them to be running. Services can take up to 3600 seconds to start. It is recommended to set the Timeout value to 3600 or longer (= RetryCount x RetryInterval + some buffer).
+  By default, the application resource waits 1800 (= RetryCount x RetryInterval)seconds for all Exchange services to be running. 
+  If any services are not running, the application resource starts them and waits 1800 seconds for them to be running. Services
+  can take up to 3600 seconds to start. 
+  It is recommended to set the Timeout value to 3600 or longer (= RetryCount x RetryInterval + some buffer).
   ```
-
 	
 **STEP :-2**
 ### Adding 2nd application resource [example: appli-control-AD]
 
-- Right-click on the %failover group%, and then click Add Resource to add the
-  second application resource.
+1. Click on the "+" to the right of the **%failover group%** to add the second (2nd) application resource.
 
-- From the drop down list, select application resource for Type, and give a name to
-  the resource (example: appli-control-AD). Click Next.
+2. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-control-AD_). Click **Next**.
 
-- Uncheck Follow the default dependency. Click the first application resource
-  (example: appli-check-service) and click Add. Click Next.
+3. Uncheck **Follow the default dependency**. Click the first application resource (example: _appli-check-service_) and click **Add**. Click **Next**.
 
  <p align="center">
 <img src="Dpncy-appli-control-AD.PNG">
 </p>   
 
-- Click Next if the default values are acceptable. Make changes to Retry Count or
-  Failover Threshold first if necessary.
+4. Click **Next** if the default values are acceptable. Make changes to **Retry Count** or **Failover Threshold** first if necessary.
   
-- Check Non-Resident and set the following parameter for Start Path.
+5. Select **Non-Resident** and set the following parameter for **Start Path**:
   ```
   Start Path : ControlActiveDirectory01.bat 
   Stop Path : (NULL)
@@ -267,23 +265,23 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 <img src="Details-appli-control-AD.PNG")
 </p>   
 	
-- Click Tuning and set 0 for Normal Return Value of Start on the Parameter tab.
+6. Click **Tuning** and set **0** for **Normal Return Value** of **Start** on the **Parameter** tab.
 
-- In tunning page click on start tab 
+7. In **Tuning** page click on **Start** tab and enter the mailbox database name in the **Option Parameter** field.
              
-		Option parameter : <Database name> ex:-<DB1>
+		Option Parameter : <Database name> example: DB1
 
 <p align="center">
 <img src="Start-Tunning-appli-control-AD.PNG")
 </p>
 
-- Click the Start tab and set the following parameters.
+8. Click the **Start** tab and set the following parameters:
     ```  
     Domain   : your domain name
     Account  : a user belonging to the Schema Admins group
     Password : password for the above user
     ```
-- Click OK and then click Finish.
+9. Click **OK** and then click **Finish**.
 
 
 **STEP :-3** 
