@@ -324,7 +324,7 @@ Note - This is a good opportunity to rename the mailbox database from the long d
   <img src="Start-Tunning-appli-control-DB.PNG")
   </p>		
 		 
-- Click the **Stop** tab and set the following parameters:
+8. Click the **Stop** tab and set the following parameters:
     ```
     Option parameter: <Mailbox database name> Dismount
     Domain          : your domain name
@@ -336,10 +336,9 @@ Note - This is a good opportunity to rename the mailbox database from the long d
   <img src="Stop-Tunning-appli-control-DB.PNG")
   </p>	
   
+9. Click **OK** and then click **Finish**.
 
 **Mirror Disk Resource  dependency**
-
-- Click OK and then click Finish.
 
 - Right-click the mirror disk resource (md) and click Properties.
 
