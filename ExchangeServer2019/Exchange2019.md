@@ -121,7 +121,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 [Alternative link](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
 
-### 1.1 Modify the Powershell script execution policy to execute the script.
+### 1.1 Modify the Powershell script execution policy to execute the script
   
 1. Launch **PowerShell** on the **Primary Server**.
  
@@ -133,7 +133,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 - Repeat this process on the **Standby Server**.
 
-### 1.2 Make a duplicate copy of RemoteExchange.ps1 and modify the copy as follows
+### 1.2 Make a duplicate copy of RemoteExchange.ps1 and modify the copy
 
 1. Navigate to the Exchange ‘Bin’ folder (e.g. C:\Program Files\Microsoft\Exchange Server\V15\Bin) on the **Primary Server**.
  
