@@ -340,12 +340,11 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 
 **Mirror Disk Resource  dependency**
 
-- Right-click the mirror disk resource (md) and click Properties.
+1. Click on the gear with a pencil icon to the right of the mirror disk resource (md).
 
-- Select the Dependency tab and uncheck Follow the default dependency. 
-add the only new created appli-control-AD and click Add.
+2. Select the **Dependency** tab and uncheck **Follow the default dependency**. Select the newly created _appli-control-AD_ resource and click **Add**.
 
-Click OK.  
+3. Click **OK**.  
   
    <p align="center">
   <img src="Dpncy_Mirror_disk.PNG")
@@ -354,7 +353,7 @@ Click OK.
 
 ###  Entire Dependency reference snippet.
 
-Please refer the below image.
+Please refer to the image below to review the dependencies.
 
    <p align="center">
   <img src="Entire_Dependency.PNG")
