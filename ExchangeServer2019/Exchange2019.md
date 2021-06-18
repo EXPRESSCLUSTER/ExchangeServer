@@ -160,7 +160,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 - Confirm that the **%failover group%** is active on the **Primary Server** and perform the following step on the **Primary Server**.
 
 ### 2.1 Move the Mailbox Database to the Mirror Disk    
-Note - This is a good opportunity to rename the mailbox database from the long default name.
+**Note** - This is a good opportunity to rename the mailbox database from the long default name.
 1. Create a folder (Mailbox Folder) on the Mirror Disk **Data Partition** (example: _E:\Mailbox Folder_).
 2. Before moving the Mailbox Database and LogFolderPath, make a backup copy of all files to be moved.
 3. Once the backup is made, open **Exchange Management Shell** as administrator.
