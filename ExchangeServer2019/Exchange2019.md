@@ -362,43 +362,30 @@ Please refer to the image below to review the dependencies.
 ## 2.4 Upload the cluster configuration and start the cluster.
 
 
--  First dismount the mailbox database using Exchange Administrative Center or the
-    following command in the Exchange Management Shell before starting the cluster.
+1. First dismount the mailbox database using **Exchange Administrative Center** or the following command in the **Exchange Management Shell** before starting the cluster:
         
 	      Dismount-Database –Identity <Mailbox database name>
 
--  Then in the Cluster Manager window, click the File menu, and then Apply the Configuration File. Click OK. 
+2. Then in the Cluster Manager window, click **Apply the Configuration File**. Click **OK**. 
 
-- Click OK.
+3. Click **OK**.
 
-- after the upload is complete, change to the Operation Mode.
+4. After the upload is complete, change to the **Operation mode**.
 
-- Right-click on the %failover_group% and select Start. Select the Primary Server to
-start the group on and click OK. The mailbox database will mount on this server. If
-the cluster is not running, click the Service menu, and then click Start Cluster. 
- 
- - Click OK.
+5. If the **%failover group%** is not running, click on the triangle icon (Start Group) button below the **Primary Server**'s column. You also may need to start each of the three new services the same way. Once all resources are started, the mailbox database will mount on this server and email clients can now connect.
 
 
 **Note**
+In the case that the **appli-check-service** fails or takes too long to start, start services.msc on the active server and ensure that all Exchange services are running automatically. Start all services that should be running. You can also check scrpl0 logs (C:\Program Files\EXPRESSCLUSTER\log) for troubleshooting help.
+
 There is no need to make changes to Microsoft Outlook or OWA.
 
 ## Testing Cluster Functionality
 	   
--  Move the failover group to the Standby Server. Monitor the failover
-   process in the Cluster Manager window. Verify that email clients are still able to
+1. Move the **%failover group%** to the **Standby Server**. Monitor the failover process in the Cluster Manager window. Verify that email clients are still able to
    connect to the mailbox database.
    
--  Move back the failover group to the Primary Server. Verify that email
-   clients are still able to connect to the mailbox database.
-
-	   
-	   
- **Note:-**
-	   
-	 In the case that the appli-check-service fails, you will have to go to services.msc and ensure that all Exchange services are running automatically.
-	 and you can also check scrpl0(C:\Program Files\EXPRESSCLUSTER\log) logs for help.
-
+2. Move the **%failover group%** back to the **Primary Server**. Verify that email clients are still able to connect to the mailbox database.
 
 
 
