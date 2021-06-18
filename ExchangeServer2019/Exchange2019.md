@@ -113,7 +113,7 @@ This section describes how to set up an Exchange Server with EXPRESSCLUSTER 4.3.
 
 ### Set up a Basic Cluster
 Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md).   
-- vcom [setup info here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-virtual-computer-name-resources)
+- vcom [setup info here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-virtual-computer-name-resources).
 
 ### Install Exchange 2019 Server
 
