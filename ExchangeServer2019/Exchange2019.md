@@ -345,8 +345,8 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 2. Select the **Dependency** tab and uncheck **Follow the default dependency**. Select the newly created _appli-control-AD_ resource and click **Add**.
 
 3. Click **OK**.  
-    
-   <p align="center">
+  
+  <p align="center">
   <img src="Dpncy_Mirror_disk.PNG")>
   </p>
 
