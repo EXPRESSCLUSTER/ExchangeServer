@@ -223,7 +223,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
   ```
 
 <p align="center">
-<img src="Dpncy_appli_check_service.PNG")
+<img src="Dpncy_appli_check_service.PNG")>
 </p>
 
 8. Click **Tuning** and set **0** for **Normal Return Value**. Set a **Timeout** value of at least **3600** for **Start** on the **Parameter** tab (see Note below). Click **OK** and then click **Finish**.
@@ -262,7 +262,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
 
 <p align="center">
-<img src="Details-appli-control-AD.PNG")
+<img src="Details-appli-control-AD.PNG")>
 </p>   
 	
 6. Click **Tuning** and set **0** for **Normal Return Value** of **Start** on the **Parameter** tab.
@@ -272,7 +272,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 		Option Parameter : <Mailbox database name> example: DB1
 
 <p align="center">
-<img src="Start-Tunning-appli-control-AD.PNG")
+<img src="Start-Tunning-appli-control-AD.PNG")>
 </p>
 
 8. Click the **Start** tab and set the following parameters:
@@ -295,7 +295,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Uncheck **Follow the default dependency**. Click the mirror disk resource and click **Add**. Click **Next**.
 
   <p align="center">
-  <img src="Dpncy-appli-control-DB.PNG")
+  <img src="Dpncy-appli-control-DB.PNG")>
   </p>
   
 4. Click **Next** if the default values are acceptable. Make changes to **Retry Count** or **Failover Threshold** first if necessary.
@@ -307,7 +307,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
 	
   <p align="center">
-  <img src="Details-appli-control-DB.PNG")
+  <img src="Details-appli-control-DB.PNG")>
   </p>		
 				 
 6. Click **Tuning** and set **0** for **Normal Return Value** of both **Start** and **Stop** on the **Parameter** tab.
@@ -321,7 +321,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
 		
   <p align="center">
-  <img src="Start-Tunning-appli-control-DB.PNG")
+  <img src="Start-Tunning-appli-control-DB.PNG")>
   </p>		
 		 
 8. Click the **Stop** tab and set the following parameters:
@@ -333,7 +333,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
     
   <p align="center">
-  <img src="Stop-Tunning-appli-control-DB.PNG")
+  <img src="Stop-Tunning-appli-control-DB.PNG")>
   </p>	
   
 9. Click **OK** and then click **Finish**.
@@ -347,7 +347,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Click **OK**.  
   
    <p align="center">
-  <img src="Dpncy_Mirror_disk.PNG")
+  <img src="Dpncy_Mirror_disk.PNG")>
   </p>
 
 
@@ -356,7 +356,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 Please refer to the image below to review the dependencies.
 
    <p align="center">
-  <img src="Entire_Dependency.PNG")
+  <img src="Entire_Dependency.PNG")>
   </p>
 
 ## 2.4 Upload the cluster configuration and start the cluster.
