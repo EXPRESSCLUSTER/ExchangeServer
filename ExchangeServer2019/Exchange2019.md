@@ -234,7 +234,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
   for all Exchange services to be running.
         RetryCount : 30
         RetryInterval : 60
-  By default, the application resource waits 1800 (= RetryCount x RetryInterval)seconds for all Exchange services to be running. 
+  By default, the application resource waits 1800 (= RetryCount x RetryInterval) seconds for all Exchange services to be running. 
   If any services are not running, the application resource starts them and waits 1800 seconds for them to be running. Services
   can take up to 3600 seconds to start. 
   It is recommended to set the Timeout value to 3600 or longer (= RetryCount x RetryInterval + some buffer).
