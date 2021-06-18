@@ -372,7 +372,7 @@ Please refer to the image below to review the dependencies.
 
 4. After the upload is complete, change to the **Operation mode**.
 
-5. If the **%failover group%** is not running, click on the triangle arrow icon (Start Group) button below the **Primary Server**'s column. You also may need to start each of the three new services the same way. Once all resources are started, the mailbox database will mount on this server and email clients can now connect.
+5. If the **%failover group%** is not running, click on the triangle arrow icon (Start group) button below the **Primary Server**'s column. You also may need to start each of the three new services the same way. Once all resources are started, the mailbox database will mount on this server and email clients can now connect.
 
 
 **Note** -   
