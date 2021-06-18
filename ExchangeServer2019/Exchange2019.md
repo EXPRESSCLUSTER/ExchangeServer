@@ -256,10 +256,10 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 4. Click **Next** if the default values are acceptable. Make changes to **Retry Count** or **Failover Threshold** first if necessary.
   
 5. Select **Non-Resident** and set the following parameter for **Start Path**:
-  ```
-  Start Path : ControlActiveDirectory01.bat 
-  Stop Path : (NULL)
-  ```
+    ```
+    Start Path : ControlActiveDirectory01.bat 
+    Stop Path : (NULL)
+    ```
 
 <p align="center">
 <img src="Details-appli-control-AD.PNG")
@@ -267,9 +267,9 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 	
 6. Click **Tuning** and set **0** for **Normal Return Value** of **Start** on the **Parameter** tab.
 
-7. In **Tuning** page click on **Start** tab and enter the mailbox database name in the **Option Parameter** field.
+7. In the **Tuning** page click on **Start** tab and enter the mailbox database name in the **Option Parameter** field.
              
-		Option Parameter : <Database name> example: DB1
+		Option Parameter : <Mailbox database name> example: DB1
 
 <p align="center">
 <img src="Start-Tunning-appli-control-AD.PNG")
@@ -288,24 +288,19 @@ Note - This is a good opportunity to rename the mailbox database from the long d
 
 ### Adding 3rd application resource [example: appli-control-DB]
 
-- Right-click on the %failover group%, and then click Add Resource to add the third
-  application resource.
+1. Click the "+" symbol to the right of the **%failover group%** to add the third (3rd) application resource.
 
-- From the drop down list, select application resource for Type, and give a name to
-  the resource (example: appli-control-DB). Click Next
+2. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-control-DB_). Click **Next**.
   
-- Uncheck Follow the default dependency. Click the mirror disk resource and click
-  Add. Click Next.
+3. Uncheck **Follow the default dependency**. Click the mirror disk resource and click **Add**. Click **Next**.
 
   <p align="center">
   <img src="Dpncy-appli-control-DB.PNG")
   </p>
   
-  
-- Click Next if the default values are acceptable. Make changes to Retry Count or
-   Failover Threshold first if necessary.
+4. Click **Next** if the default values are acceptable. Make changes to **Retry Count** or **Failover Threshold** first if necessary.
    
-- Check Non-Resident and set the following parameters for Start Path and Stop Path.
+5. Select **Non-Resident** and set the following parameters for **Start Path** and **Stop Path**:
     ```          
     Start Path : ControlMailboxDatabase01.bat 
     Stop Path : ControlMailboxDatabase01.bat 
@@ -314,13 +309,10 @@ Note - This is a good opportunity to rename the mailbox database from the long d
   <p align="center">
   <img src="Details-appli-control-DB.PNG")
   </p>		
-				 			 
 				 
-				 
-- Click Tuning and set 0 for Normal Return Value of both Start and Stop on the
-  Parameter tab.
+6. Click **Tuning** and set **0** for **Normal Return Value** of both **Start** and **Stop** on the **Parameter** tab.
 
-- Click the Start tab and set the following parameters.
+7. Click the **Start** tab and set the following parameters:
     ```
     Option parameter: <Mailbox database name> Mount
     Domain          : your domain name
@@ -332,7 +324,7 @@ Note - This is a good opportunity to rename the mailbox database from the long d
   <img src="Start-Tunning-appli-control-DB.PNG")
   </p>		
 		 
-- Click the Stop tab and set the following parameters.
+- Click the **Stop** tab and set the following parameters:
     ```
     Option parameter: <Mailbox database name> Dismount
     Domain          : your domain name
@@ -344,7 +336,6 @@ Note - This is a good opportunity to rename the mailbox database from the long d
   <img src="Stop-Tunning-appli-control-DB.PNG")
   </p>	
   
-
 
 **Mirror Disk Resource  dependency**
 
@@ -413,82 +404,3 @@ There is no need to make changes to Microsoft Outlook or OWA.
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		
