@@ -57,7 +57,7 @@ For more information on preparing Active Directory and Windows Server 2019 for E
 	- **Note**
 		- It is not supported to mirror the C: drive and please do NOT specify C: for the Data Partition.
 		- Dynamic disk is not supported for Data Partition and Cluster Partition.
-		- Data on the Secondary Server's Data Partition will be removed for initial Mirror Disk synchronization (Initial Recovery).
+		- Data on the Secondary Server's Data Partition will be overwritten for initial Mirror Disk synchronization (Initial Recovery).
 		
 		
 ### Sample Configuration
