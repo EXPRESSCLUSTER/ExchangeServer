@@ -157,7 +157,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 ## Cluster Setup 
 
-- Confirm that the **%failover group%** is active on the **Primary Server**.
+- Confirm that the **%failover group%** is active on the **Primary Server** and perform the following step on the **Primary Server**.
 
 ### 2.1 Move the Mailbox Database to the Mirror Disk    
 Note - This is a good opportunity to rename the mailbox database from the long default name.
