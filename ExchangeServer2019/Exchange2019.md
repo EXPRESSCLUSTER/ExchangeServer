@@ -351,7 +351,7 @@ If using the Exchange 2013 scripts, additional editing is needed to manage updat
 
 **Mirror Disk Resource  dependency**
 
-1. Click on the gear with a pencil icon to the right of the mirror disk resource (md).
+1. Click on the ![gear with a pencil](icon-property-edit.png) icon to the right of the mirror disk resource (md).
 
 2. Select the **Dependency** tab and uncheck **Follow the default dependency**. Select the newly created _appli-control-AD_ resource and click **Add**.
 
