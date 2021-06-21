@@ -191,12 +191,12 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 1. Download the script files from the **Exchange Server** section of the [NEC EXPRESSCLUSTER web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html). 
 2. Copy all script files to the **EXPRESSCLUSTER bin** folder (example. _C:\ProgramFiles\EXPRESSCLUSTER\bin_) on the **Primary Server**.
 3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
-4. Repeat the previous two steps on the **Standby Server**.
-
-   If using the Exchange 2013 scripts, additional editing is needed to manage updated Exchange 2019 services which are obsolete or new.
+4. Repeat the previous two steps on the **Standby Server**.    
+    
+   If using the Exchange 2013 scripts, additional editing is needed to manage updated Exchange 2019 services which are obsolete or new. Continue with the following steps:
 1. Open **CheckExchangeServices.ps1** in a text editor.
 2. Comment out "**MSExchangeUMCR**" in the service name array (Unified Messaging was removed from Exchange Server 2019).
-3. Add the following new services with Automatic startup type to the list:    
+3. Add the following new services (which have **Automatic** Startup type) to the list:    
    **MSComplianceAudit**    
    **MSExchangeCompliance**    
    **MSExchangeHMRecovery**    
