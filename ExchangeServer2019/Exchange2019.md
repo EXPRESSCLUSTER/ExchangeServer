@@ -193,9 +193,20 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
 4. Repeat the previous two steps on the **Standby Server**.
 
+If using the Exchange 2013 scripts, additional editing is needed to manage updated Exchange 2019 services which are obsolete or new.
+1. Open **CheckExchangeServices.ps1** in a text editor.
+2. Comment out "**MSExchangeUMCR**" in the service name array (Unified Messaging was removed from Exchange Server 2019).
+3. Add the following new services with Automatic startup type to the list:    
+   **MSComplianceAudit**    
+   **MSExchangeCompliance**    
+   **MSExchangeHMRecovery**    
+   
+   **wsbexchange** is new but the startup type is Manual, so does not need to be added.
+4. Repeat these steps on the **Standby Server**.
+
     **Note** - 
 				
-    One of the scripts requires that the **Active Directory module for Windows PowerShell** feature is installed. Verify this on both servers before continuing by opening the **Add Roles and Features Wizard**, and from **Features** check the following: _Remote Server Administration Tools > Role Administration Tools > AD DS and AD LDS Tools > Active Directory Module for Windows PowerShell_.
+    One of the other scripts requires that the **Active Directory module for Windows PowerShell** feature is installed. Verify this on both Exchange servers before continuing by opening the **Add Roles and Features Wizard**, and from **Features** check the following: _Remote Server Administration Tools > Role Administration Tools > AD DS and AD LDS Tools > Active Directory Module for Windows PowerShell_. Install it if it hasn't been installed yet.
 
 ### 2.4 Add Application Resources in ECX cluster to Control an Exchange Mailbox Database 
   
