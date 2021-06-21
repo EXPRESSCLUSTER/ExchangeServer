@@ -218,7 +218,7 @@ If using the Exchange 2013 scripts, additional editing is needed to manage updat
 
 2. In the **Cluster Manager** window, choose **Config mode**.
 
-3. Click on the "+" symbol to the right of the **%failover group%** to add the first (1st) application resource.
+3. Click on the !["+"](icon-add.png) symbol to the right of the **%failover group%** to add the first (1st) application resource.
   
 4. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-check-service_). Click **Next**.
 
@@ -254,7 +254,7 @@ If using the Exchange 2013 scripts, additional editing is needed to manage updat
 **STEP :-2**
 ### Adding 2nd application resource [example: appli-control-AD]
 
-1. Click on the "+" to the right of the **%failover group%** to add the second (2nd) application resource.
+1. Click on the !["+"](icon-add.png) symbol to the right of the **%failover group%** to add the second (2nd) application resource.
 
 2. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-control-AD_). Click **Next**.
 
@@ -299,7 +299,7 @@ If using the Exchange 2013 scripts, additional editing is needed to manage updat
 
 ### Adding 3rd application resource [example: appli-control-DB]
 
-1. Click the "+" symbol to the right of the **%failover group%** to add the third (3rd) application resource.
+1. Click the !["+"](icon-add.png) symbol to the right of the **%failover group%** to add the third (3rd) application resource.
 
 2. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-control-DB_). Click **Next**.
   
