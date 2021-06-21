@@ -370,7 +370,7 @@ Please refer to the image below to review the dependencies.
   <img src="Entire_Dependency.PNG")>
   </p>
 
-## 2.5 Upload the cluster configuration and start the cluster.
+### 2.5 Upload the cluster configuration and start the cluster.
 
 
 1. First dismount the mailbox database using **Exchange Administrative Center** or the following command in the **Exchange Management Shell** before starting the cluster:
