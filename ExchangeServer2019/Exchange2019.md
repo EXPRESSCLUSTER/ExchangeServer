@@ -131,7 +131,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
          
 		PS> Set-ExecutionPolicy RemoteSigned
 
-- Repeat this process on the **Standby Server**.
+4. Repeat this process on the **Standby Server**.
 
 ### 1.2 Make a duplicate copy of RemoteExchange.ps1 and modify the copy
 
