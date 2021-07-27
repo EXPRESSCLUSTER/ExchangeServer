@@ -417,6 +417,6 @@ What can be done when the server is busy and services don't start? The EXPRESSCL
 1. Check the [Exchange Server 2019 minimum requirements](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/system-requirements?view=exchserver-2019) to make sure your system is up to speed.
 2. If you are comfortable editing the registry, set HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ServicesPipeTimeout to 60000 (see [this page](https://docs.microsoft.com/en-US/troubleshoot/windows-server/system-management-components/service-not-start-events-7000-7011-time-out-error) from Microsoft regarding this issue). Another [site](https://appuals.com/how-to-fix-error-1053-the-service-did-not-respond-to-the-start-or-control-request-in-a-timely-fashion/) recommends setting the timeout value to 180000. In my testing, using the 180000 value gets all of the services running up to two minutes faster than the 60000 value.
 3. If you would rather not edit the registry, set the Exchange server services startup type from 'Automatic' to 'Automatic (Delayed Start)'. This is mentioned as an option on [this site](https://community.spiceworks.com/topic/2297222-exchange-2019-services-fails-to-start-on-server-reboot). I have confirmed that this works, but the services don't start as quickly as the ServicesPipeTimeout solution.
-
+4. If your system is slow to start up and slow to logon, being patient and waiting to logon for a few minutes can help the Exchange services start up faster.
 
 
