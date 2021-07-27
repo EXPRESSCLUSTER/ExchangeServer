@@ -399,5 +399,19 @@ There is no need to make changes to Microsoft Outlook or OWA.
    
 2. Move the **%failover group%** back to the **Primary Server**. Verify that email clients are still able to connect to the mailbox database.
 
+## Troubleshooting
+
+### Exchange services do not start after server reboot
+
+You might notice that very few Exchange services are starting up on one node in the cluster after rebooting it. This might be experienced after rebooting one or both servers. Nearly all of the Exchange server services are dependent on the Exchange AD Topology service. If it doesn't start due to a lot of activity during server startup, other services won't start either. Check the event log and you might see events similar to the following:    
+    
+    The MSExchangeADTopology service failed to start due to the following error: %%1053
+    
+    Error     Service Control Manager 3221232481 A timeout was reached (30000 milliseconds) while waiting for the MSExchangeHM service to connect.
+    Error     Service Control Manager 3221232472 The MSExchangeHM service failed to start due to the following error: %%1053
+
+Errpr 1053 is 'The service did not respond to the start or control request in a timely fashion.'    
+
+
 
 
