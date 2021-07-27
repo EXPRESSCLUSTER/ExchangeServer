@@ -415,7 +415,7 @@ Error 1053 is 'The service did not respond to the start or control request in a 
 What can be done when the server is busy and services don't start? The EXPRESSCLUSTER script will take care of services on the server with control of the clsuter group. But if the services don't start on the standby server, failover can take a little longer to occur than if they were already running. You can failover/failback or start the services manually to get them running but that doesn't resolve the underlying problem. Here are some things to try:    
 
 1. Check the [Exchange Server 2019 minimum requirements](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/system-requirements?view=exchserver-2019) to make sure your system is up to speed.
-2. If you are comfortable editing the registry, set HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ServicesPipeTimeout to 180000 (see [this page](https://community.spiceworks.com/topic/2297222-exchange-2019-services-fails-to-start-on-server-reboot)
+2. If you are comfortable editing the registry, set HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ServicesPipeTimeout to 60000 (see [this page](https://community.spiceworks.com/topic/2297222-exchange-2019-services-fails-to-start-on-server-reboot) from Microsoft regarding this issue).
 
 
 
