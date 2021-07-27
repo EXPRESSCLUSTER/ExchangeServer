@@ -407,8 +407,8 @@ If you  notice that very few Exchange services are starting up on one node in th
     
     The MSExchangeADTopology service failed to start due to the following error: %%1053
     
-    Error     Service Control Manager 3221232481 A timeout was reached (30000 milliseconds) while waiting for the MSExchangeHM service to connect.
-    Error     Service Control Manager 3221232472 The MSExchangeHM service failed to start due to the following error: %%1053
+    Error     Service Control Manager 3221232481 A timeout was reached (30000 milliseconds) while waiting for the <Exchange> service to connect.
+    Error     Service Control Manager 3221232472 The <Exchange> service failed to start due to the following error: %%1053
 
 Error 1053 is 'The service did not respond to the start or control request in a timely fashion.'    
 
