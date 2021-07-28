@@ -193,16 +193,14 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
 4. Repeat the previous two steps on the **Standby Server**.    
     
-   If using the Exchange 2013 scripts replace _CheckExchangeServices.ps1_ with [CheckExchangeServices.ps1](Scripts/CheckExchangeServices.ps1) on this site, which has been updatd for Exchange Server 2019. , additional editing is needed to manage updated Exchange 2019 services which are obsolete or new. Continue with the following steps:
-1. Open **CheckExchangeServices.ps1** in a text editor.
-2. Comment out "**MSExchangeUMCR**" in the service name array (Unified Messaging was removed from Exchange Server 2019).
-3. Add the following new services (which have **Automatic** Startup type) to the list:    
-   **MSComplianceAudit**    
-   **MSExchangeCompliance**    
-   **MSExchangeHMRecovery**    
+   If using the Exchange 2013 scripts replace _CheckExchangeServices.ps1_ with [CheckExchangeServices.ps1](Scripts/CheckExchangeServices.ps1) on this site, which has been updatd for Exchange Server 2019. This updated script also fixes a problem which some have experienced where the mailbox database fails to mount, leading to one or more failover/failbacks. Some services in Exchange 2013 are now obsolete and some are new to Exchange 2019. The new services are:    
+   - **MSComplianceAudit**    
+   - **MSExchangeCompliance**    
+   - **MSExchangeHMRecovery**    
    
-   **wsbexchange** is new but the startup type is Manual, so does not need to be added.
-4. Repeat these steps on the **Standby Server**.
+   - **wsbexchange** is new but the startup type is Manual, so does not need to be added. You can add it manually to the script on both servers if you like.    
+
+
 
     **Note** - 
 				
