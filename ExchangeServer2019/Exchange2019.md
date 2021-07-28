@@ -401,20 +401,20 @@ There is no need to make changes to Microsoft Outlook or OWA.
 
 ### Exchange services do not start after server reboot
 
-If you  notice that very few Exchange services are starting up on one node in the cluster after rebooting it, you are not alone. This might be experienced after rebooting one or both servers. Nearly all of the Exchange server services are dependent on the Exchange AD Topology service. If it doesn't start due to a lot of activity during server startup, other services won't start either. Check the event log and you might see events similar to the following:    
+If you  notice that very few Exchange services are starting up on one node in the cluster after rebooting it, you are not alone. This might be experienced after rebooting one or both servers. Nearly all of the Exchange server services are dependent on the **Exchange AD Topology** service. If it doesn't start due to a lot of activity during server startup, other services won't start either. Check the event log and you might see events similar to the following:    
     
     The MSExchangeADTopology service failed to start due to the following error: %%1053
     
     Error     Service Control Manager 3221232481 A timeout was reached (30000 milliseconds) while waiting for the <Exchange> service to connect.
     Error     Service Control Manager 3221232472 The <Exchange> service failed to start due to the following error: %%1053
 
-Error 1053 is 'The service did not respond to the start or control request in a timely fashion.'    
+**Error 1053** is '_The service did not respond to the start or control request in a timely fashion._'    
 
 What can be done when the server is busy and services don't start? The EXPRESSCLUSTER script will take care of services on the server with control of the cluster group. But if the services don't start on the standby server, failover can take a little longer to occur than if they were already running. You can failover/failback or start the services manually to get them running but that doesn't resolve the underlying problem. Here are some things to try:    
 
 1. Check the [Exchange Server 2019 minimum requirements](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/system-requirements?view=exchserver-2019) to make sure your system is up to speed.
-2. If you are comfortable editing the registry, set HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ServicesPipeTimeout to 60000 (see [this page](https://docs.microsoft.com/en-US/troubleshoot/windows-server/system-management-components/service-not-start-events-7000-7011-time-out-error) from Microsoft regarding this issue). The default value for this key is 30000. Another [site](https://appuals.com/how-to-fix-error-1053-the-service-did-not-respond-to-the-start-or-control-request-in-a-timely-fashion/) recommends setting the timeout value to 180000. In my testing, using the 180000 value gets all of the services running up to two minutes faster than the 60000 value.
-3. If you would rather not edit the registry, set the Exchange server services startup type from 'Automatic' to 'Automatic (Delayed Start)'. This is mentioned as an option on [this site](https://community.spiceworks.com/topic/2297222-exchange-2019-services-fails-to-start-on-server-reboot). I have confirmed that this works, but the services don't start as quickly as the ServicesPipeTimeout solution.
+2. If you are comfortable editing the registry, set _HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ServicesPipeTimeout_ to 60000 (see [this page](https://docs.microsoft.com/en-US/troubleshoot/windows-server/system-management-components/service-not-start-events-7000-7011-time-out-error) from Microsoft regarding this issue). The default value for this key is 30000. Another [site](https://appuals.com/how-to-fix-error-1053-the-service-did-not-respond-to-the-start-or-control-request-in-a-timely-fashion/) recommends setting the timeout value to 180000. In my testing, using the 180000 value gets all of the services running up to two minutes faster than the 60000 value.
+3. If you would rather not edit the registry, set the Exchange server services startup type from '_Automatic_' to '_Automatic (Delayed Start)_'. This is mentioned as an option on [this site](https://community.spiceworks.com/topic/2297222-exchange-2019-services-fails-to-start-on-server-reboot). I have confirmed that this works, but the services don't start as quickly as the ServicesPipeTimeout solution.
 4. If your system is slow to start up and slow to logon, being patient and waiting to logon for a few minutes can help the Exchange services start up faster.
 
 
