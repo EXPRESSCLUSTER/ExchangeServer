@@ -47,7 +47,7 @@ For more information on preparing Active Directory and Windows Server 2019 for E
 
 ### Requirements
 - The Primary Server, Secondary Server and Client machine should be reachable via IP addresses.
-- In order to use the fip resource, both servers should belong to the same nework.
+- In order to use the fip resource, both servers should belong to the same network.
 	- If each server belongs to a different network, you can use a [ddns resource](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-dynamic-dns-resources) with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of an fip address.
 - Ports which EXPRESSCLUSTER requires should be opened.
 	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2 and X4.3](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers.
@@ -121,7 +121,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 [Alternative link](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
 
-### 1.1 Modify the Powershell script execution policy to execute the script
+### 1.1 Modify the PowerShell script execution policy to execute the script
   
 1. Launch **PowerShell** on the **Primary Server**.
  
@@ -220,7 +220,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 3. Click on the !["+"](icon-add.png) symbol to the right of the **%failover group%** to add the first (1st) application resource.
   
-4. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-check-service_). Click **Next**.
+4. From the drop-down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-check-service_). Click **Next**.
 
 5. Uncheck **Follow the default dependency** and click **Next**.
 
@@ -256,7 +256,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 1. Click on the !["+"](icon-add.png) symbol to the right of the **%failover group%** to add the second (2nd) application resource.
 
-2. From the drop down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-control-AD_). Click **Next**.
+2. From the drop-down list, select **Application resource** for **Type**, and give a name to the resource (example: _appli-control-AD_). Click **Next**.
 
 3. Uncheck **Follow the default dependency**. Click the first application resource (example: _appli-check-service_) and click **Add**. Click **Next**.
 
@@ -403,7 +403,7 @@ There is no need to make changes to Microsoft Outlook or OWA.
 
 ### Exchange services do not start after server reboot
 
-If you  notice that very few Exchange services are starting up on one node in the cluster after rebooting it, you are not alone. This might be experienced after rebooting one or both servers. Nearly all of the Exchange server services are dependent on the **Microsoft Exchange Active Directory Topology** service. If it doesn't start due to a lot of activity during server startup, other services won't start either. Check the event log and you might see events similar to the following:    
+If you  notice that very few Exchange services are starting up on one node in the cluster after rebooting it, you are not alone. This might be experienced after rebooting one or both servers. Nearly all of the Exchange Server services are dependent on the **Microsoft Exchange Active Directory Topology** service. If it doesn't start due to a lot of activity during server startup, other services won't start either. Check the event log and you might see events like the following:    
     
     The MSExchangeADTopology service failed to start due to the following error: %%1053
     
@@ -412,7 +412,7 @@ If you  notice that very few Exchange services are starting up on one node in th
 
 **Error 1053** is '_The service did not respond to the start or control request in a timely fashion._'    
 
-What can be done when the server is busy and services don't start? The EXPRESSCLUSTER script will take care of services on the server with control of the cluster group. But if the services don't start on the standby server, failover can take a little longer to occur than if they were already running. You can failover/failback or start the services manually to get them running but that doesn't resolve the underlying problem. Here are some things to try:    
+What can be done when the server is busy, and services don't start? The EXPRESSCLUSTER script will take care of services on the server with control of the cluster group. But if the services don't start on the standby server, failover can take a little longer to occur than if they were already running. You can failover/failback or start the services manually to get them running but that doesn't resolve the underlying problem. Here are some things to try:    
 
 1. Check the [Exchange Server 2019 minimum requirements](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/system-requirements?view=exchserver-2019) to make sure your system is up to speed.
 2. If you are comfortable editing the registry, set _HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ServicesPipeTimeout_ to 60000 (see [this page](https://docs.microsoft.com/en-US/troubleshoot/windows-server/system-management-components/service-not-start-events-7000-7011-time-out-error) from Microsoft regarding this issue). The default value for this key is 30000. Another [site](https://appuals.com/how-to-fix-error-1053-the-service-did-not-respond-to-the-start-or-control-request-in-a-timely-fashion/) recommends setting the timeout value to 180000. In my testing, using the 180000 value gets all of the services running up to two minutes faster than the 60000 value.
