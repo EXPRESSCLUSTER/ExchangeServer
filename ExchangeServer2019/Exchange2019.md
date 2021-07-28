@@ -193,7 +193,9 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
 4. Repeat the previous two steps on the **Standby Server**.    
     
-   If using the Exchange 2013 scripts replace _CheckExchangeServices.ps1_ with [CheckExchangeServices.ps1](Scripts/CheckExchangeServices.ps1) on this site, which has been updatd for Exchange Server 2019. This updated script also fixes a problem which some have experienced where the mailbox database fails to mount, leading to one or more failover/failbacks. Some services in Exchange 2013 are now obsolete and some are new to Exchange 2019. The new services are:    
+   If using the Exchange 2013 scripts replace _CheckExchangeServices.ps1_ with [CheckExchangeServices.ps1](Scripts/CheckExchangeServices.ps1) on this site, which has been updated for Exchange Server 2019. This updated script also fixes a problem which some have experienced where the mailbox database fails to mount, leading to one or more failover/failbacks. Some services in Exchange 2013 are now obsolete and some are new to Exchange 2019.    
+   
+   The new services are:    
    - **MSComplianceAudit**    
    - **MSExchangeCompliance**    
    - **MSExchangeHMRecovery**    
@@ -401,7 +403,7 @@ There is no need to make changes to Microsoft Outlook or OWA.
 
 ### Exchange services do not start after server reboot
 
-If you  notice that very few Exchange services are starting up on one node in the cluster after rebooting it, you are not alone. This might be experienced after rebooting one or both servers. Nearly all of the Exchange server services are dependent on the **Exchange AD Topology** service. If it doesn't start due to a lot of activity during server startup, other services won't start either. Check the event log and you might see events similar to the following:    
+If you  notice that very few Exchange services are starting up on one node in the cluster after rebooting it, you are not alone. This might be experienced after rebooting one or both servers. Nearly all of the Exchange server services are dependent on the **Microsoft Exchange Active Directory Topology** service. If it doesn't start due to a lot of activity during server startup, other services won't start either. Check the event log and you might see events similar to the following:    
     
     The MSExchangeADTopology service failed to start due to the following error: %%1053
     
