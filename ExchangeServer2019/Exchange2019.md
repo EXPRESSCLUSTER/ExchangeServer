@@ -193,7 +193,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
 4. Repeat the previous two steps on the **Standby Server**.    
     
-   If using the Exchange 2013 scripts replace _CheckExchangeServices.ps1_ with the file on this site which has been updatd for Exchange Server 2019. , additional editing is needed to manage updated Exchange 2019 services which are obsolete or new. Continue with the following steps:
+   If using the Exchange 2013 scripts replace _CheckExchangeServices.ps1_ with [CheckExchangeServices.ps1](Scripts\CheckExchangeServices.ps1) on this site, which has been updatd for Exchange Server 2019. , additional editing is needed to manage updated Exchange 2019 services which are obsolete or new. Continue with the following steps:
 1. Open **CheckExchangeServices.ps1** in a text editor.
 2. Comment out "**MSExchangeUMCR**" in the service name array (Unified Messaging was removed from Exchange Server 2019).
 3. Add the following new services (which have **Automatic** Startup type) to the list:    
