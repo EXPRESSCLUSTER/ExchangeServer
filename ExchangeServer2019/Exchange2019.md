@@ -283,7 +283,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 		Option Parameter : <Mailbox database name> example: DB1
 
 <p align="center">
-<img src="Start-Tunning-appli-control-AD.PNG")>
+<img src="Start-Tuning-appli-control-AD.PNG")>
 </p>
 
 8. Click the **Start** tab and set the following parameters:
@@ -332,7 +332,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
 		
   <p align="center">
-  <img src="Start-Tunning-appli-control-DB.PNG")>
+  <img src="Start-Tuning-appli-control-DB.PNG")>
   </p>		
 		 
 8. Click the **Stop** tab and set the following parameters:
@@ -344,7 +344,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
     
   <p align="center">
-  <img src="Stop-Tunning-appli-control-DB.PNG")>
+  <img src="Stop-Tuning-appli-control-DB.PNG")>
   </p>	
   
 9. Click **OK** and then click **Finish**.
