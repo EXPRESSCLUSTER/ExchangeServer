@@ -1,13 +1,11 @@
 # Microsoft Exchange Server 2019 (CU9) on Windows Cluster ECX 4.3
 This page describes how to create an Exchange Server 2019 cluster with EXPRESSCLUSTER X.
 
-- For more information regarding EXPRESSCLUSTER X, please visit [this site](https://www.nec.com/en/global/prod/expresscluster/en/support/manuals.html).
+- For more information regarding EXPRESSCLUSTER X, please visit the [NEC EXPRESSCLUSTER Documentation - Manuals](https://www.nec.com/en/global/prod/expresscluster/en/doc/manual.html?) website.
 
 ## Exchange 2019 Prerequisites 
 
-For more information on preparing Active Directory and Windows Server 2019 for Exchange Server 2019, please see Microsoft documentation at [this site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019).
-
-[Alternative Link](https://msexperttalk.com/part-2-install-and-configure-exchange-server-2019/)
+For more information on preparing Active Directory and Windows Server 2019 for Exchange Server 2019, please see Microsoft documentation at [Exchange Server 2019 and SE prerequisites](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/prerequisites?view=exchserver-2019) website.
 
 ## System Configuration
 - Servers: 2 nodes with 1 Mirror Disk each
@@ -47,13 +45,13 @@ For more information on preparing Active Directory and Windows Server 2019 for E
 
 ### Requirements
 - The Primary Server, Secondary Server and Client machine should be reachable via IP addresses.
-- In order to use the fip resource, both servers should belong to the same network.
-	- If each server belongs to a different network, you can use a [ddns resource](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-dynamic-dns-resources) with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of an fip address.
+- In order to use the fip (floating IP) resource, both servers should belong to the same network.
+	- If each server belongs to a different network, you can use a [ddns resource](https://docs.nec.co.jp/software/clustering/expresscluster_x/x43/ecx_x43_windows_en/W43_RG_EN/W_RG_03.html#understanding-dynamic-dns-resources) with [Dynamic DNS Server](https://github.com/EXPRESSCLUSTER/Tips/blob/master/ddnsPreparation.md) instead of an fip address.
 - Ports which EXPRESSCLUSTER requires should be opened.
 	- You can open ports by executing OpenPort.bat([X4.1](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts.bat)/[X4.2 and X4.3](https://github.com/EXPRESSCLUSTER/Tools/blob/master/OpenPorts_X42.bat)) on both servers.
-- 2 partitions are required, one for Mirror Disk Data Partition and one for Cluster Partition.
-	- Data Partition: Depends on mirrored data size (NTFS)
+- 2 partitions are required, one for the Cluster Partition and one for the Mirror Disk Data Partition.
 	- Cluster Partition: 1GB, RAW (do not format this partition)
+  - Data Partition: Depends on mirrored data size (NTFS)	
 	- **Note**
 		- It is not supported to mirror the C: drive and please do NOT specify C: for the Data Partition.
 		- Dynamic disk is not supported for Data Partition and Cluster Partition.
@@ -81,7 +79,7 @@ For more information on preparing Active Directory and Windows Server 2019 for E
 - Required Licenses
 	- Core: For 4CPUs
 	- Replicator Option: For 2 nodes
-	- (Optional) Other Option licenses: For 2 nodes
+	- (Optional) Other licenses: For 2 nodes
 
 - IP address  
 
@@ -113,13 +111,11 @@ This section describes how to set up an Exchange Server with EXPRESSCLUSTER 4.3.
 
 ### Set up a Basic Cluster
 Please refer to [Basic Cluster Setup](https://github.com/EXPRESSCLUSTER/BasicCluster/blob/master/X41/Win/2nodesMirror.md).   
-- vcom [setup info here](https://www.manuals.nec.co.jp/contents/system/files/nec_manuals/node/539/W43_RG_EN/W_RG_03.html#understanding-virtual-computer-name-resources).
+- vcom (virtual computer name) [setup info here](https://docs.nec.co.jp/software/clustering/expresscluster_x/x43/ecx_x43_windows_en/W43_RG_EN/W_RG_03.html#understanding-virtual-computer-name-resources).
 
 ### Install Exchange 2019 Server
 
-For Exchange installation and configuration, please visit [this Microsoft site](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/deploy-new-installations?view=exchserver-2019).
-
-[Alternative link](https://msexperttalk.com/part-4-install-and-configure-exchange-server-2019/)
+For Exchange installation and configuration, please visit [Deploy new installations of Exchange](https://docs.microsoft.com/en-us/exchange/plan-and-deploy/deploy-new-installations/deploy-new-installations?view=exchserver-2019).
 
 ### 1.1 Modify the PowerShell script execution policy to execute the script
   
@@ -137,9 +133,9 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 1. Navigate to the Exchange ‘Bin’ folder (e.g. C:\Program Files\Microsoft\Exchange Server\V15\Bin) on the **Primary Server**.
  
-2. Make a duplicate Copy of **RemoteExchange.ps1** to the same folder and rename the copy to **RemoteExchange-ECX.ps1**.
+2. Make a duplicate Copy of **RemoteExchange.ps1** in the same folder and rename the copy to **RemoteExchange-ECX.ps1**.
  
-3. Edit **RemoteExchange-ECX.ps1** by scrolling down to the section where the functions are called and commenting out **get-banner** and **get-tip**. Then add the error handling code with the line _.\ControlMailboxDatabase.ps1_ as shown in the example below: 
+3. Open **RemoteExchange-ECX.ps1** for editing and scroll down to the section where the functions are called. Comment out **get-banner** and **get-tip**. Then add the error handling code with the line _.\ControlMailboxDatabase.ps1_ as shown in the example below: 
 ````   
       ## now actually call the functions
 
@@ -148,7 +144,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
       $ErrorControlMailboxDatabase = 90
       .\ControlMailboxDatabase.ps1
       $bRet = $?
-      if ($bRet –eq $False)
+      if ($bRet -eq $False)
       {
       exit $ErrorControlMailboxDatabase
       }
@@ -166,15 +162,15 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Once the backup is made, open **Exchange Management Shell** as administrator.
 4. Run the following command at the prompt:
 ````
-      Move-DatabasePath –Identity <MDB name> -EdbFilePath <new path to .edb file> -LogFolderPath <new path to folder>
+      Move-DatabasePath -Identity <MDB name> -EdbFilePath <new path to .edb file> -LogFolderPath <new path to folder>
       
-      Example: Move-DatabasePath –Identity “LongfilenameMailbox” –EdbFilePath “E:\Mailbox Folder\Mailbox01.edb” –LogFolderPath “E:\Mailbox Folder”
+      Example: Move-DatabasePath -Identity "LongfilenameMailbox" -EdbFilePath "E:\Mailbox Folder\Mailbox01.edb" -LogFolderPath "E:\Mailbox Folder"
 ````
 5. Next run the following command at the prompt:    
 
-	   Set-MailboxDatabase –Identity <MDB name> –MountAtStartup $False
+	   Set-MailboxDatabase -Identity <MDB name> -MountAtStartup $False
 
-7. To verify the change, run the command:
+6. To verify the change, run the command:
 
 	   Get-MailboxDatabase <MDB name> | Fl Name,*Path*
 
@@ -188,12 +184,13 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 ### 2.3 Copy and configure failover scripts
 
-1. Download the script files from the **Exchange Server** section of the [NEC EXPRESSCLUSTER web site](http://www.nec.com/en/global/prod/expresscluster/en/support/Setup.html). 
+1. Download the script files from the **Exchange Server** section of the [NEC EXPRESSCLUSTER web site](https://www.nec.com/en/global/prod/expresscluster/en/doc/guide.html?#:~:text=Application-,Exchange%20Server,-Material).    
+**Note**: This link has change d and currently there are only scripts for Exchange Server 2010 and 2013 - download the 2013 scripts.
 2. Copy all script files to the **EXPRESSCLUSTER bin** folder (example. _C:\ProgramFiles\EXPRESSCLUSTER\bin_) on the **Primary Server**.
 3. Open **SetEnvironment.bat** with a text editor and change the parameters to match your environment.
 4. Repeat the previous two steps on the **Standby Server**.    
     
-   If using the Exchange 2013 scripts replace _CheckExchangeServices.ps1_ with [CheckExchangeServices.ps1](Scripts/CheckExchangeServices.ps1) on this site, which has been updated for Exchange Server 2019. This updated script also fixes a problem which some have experienced where the mailbox database fails to mount, leading to one or more failover/failbacks. Some services in Exchange 2013 are now obsolete and some are new to Exchange 2019.    
+   If using the Exchange Server 2013 scripts, replace _CheckExchangeServices.ps1_ with [CheckExchangeServices.ps1](Scripts/CheckExchangeServices.ps1) from this repository, which has been updated for Exchange Server 2019. This updated script also fixes a problem which some have experienced where the mailbox database fails to mount, leading to one or more failover/failbacks. This script comments out services in Exchange 2013 which are now obsolete and adds services new to Exchange 2019.    
    
    The new services are:    
    - **MSComplianceAudit**    
@@ -206,11 +203,11 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
     **Note** - 
 				
-    One of the other scripts requires that the **Active Directory module for Windows PowerShell** feature is installed. Verify this on both Exchange servers before continuing by opening the **Add Roles and Features Wizard**, and from **Features** check the following: _Remote Server Administration Tools > Role Administration Tools > AD DS and AD LDS Tools > Active Directory Module for Windows PowerShell_. Install it if it hasn't been installed yet.
+    One of the other scripts requires that the **Active Directory module for Windows PowerShell** feature is installed. Verify this on both Exchange servers before continuing by opening the **Add Roles and Features Wizard**. From **Features**, check the following: _Remote Server Administration Tools > Role Administration Tools > AD DS and AD LDS Tools > Active Directory Module for Windows PowerShell_. Install it if it hasn't been installed yet.
 
 ### 2.4 Add Application Resources in ECX cluster to Control an Exchange Mailbox Database 
   
-**STEP :- 1**
+**STEP 1**
 
 ### Adding 1st application resource [example: appli-check-service]
 
@@ -224,6 +221,10 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 
 5. Uncheck **Follow the default dependency** and click **Next**.
 
+<p align="center">
+<img src="Dpncy_appli_check_service.PNG">
+</p>
+
 6. Click **Next** if the default values are acceptable. Make changes to **Retry Count** or **Failover Threshold** first if necessary.
 
 7. Select **Non-Resident** and set the following parameter for **Start Path**:
@@ -232,11 +233,6 @@ For Exchange installation and configuration, please visit [this Microsoft site](
   Stop Path     : (NULL)
   Resident Type : Non-Resident
   ```
-
-<p align="center">
-<img src="Dpncy_appli_check_service.PNG")>
-</p>
-
 8. Click **Tuning** and set **0** for **Normal Return Value**. Set a **Timeout** value of at least **3600** for **Start** on the **Parameter** tab (see Note below). Click **OK** and then click **Finish**.
   
  **Note**
@@ -251,7 +247,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
   It is recommended to set the Timeout value to 3600 or longer (= RetryCount x RetryInterval + some buffer).
   ```
 	
-**STEP :-2**
+**STEP 2**
 ### Adding 2nd application resource [example: appli-control-AD]
 
 1. Click on the !["+"](icon-add.png) symbol to the right of the **%failover group%** to add the second (2nd) application resource.
@@ -268,25 +264,25 @@ For Exchange installation and configuration, please visit [this Microsoft site](
   
 5. Select **Non-Resident** and set the following parameter for **Start Path**:
     ```
-    Start Path : ControlActiveDirectory01.bat 
+    Start Path : ControlActiveDirectory01.bat
     Stop Path : (NULL)
     ```
 
 <p align="center">
-<img src="Details-appli-control-AD.PNG")>
+<img src="Details-appli-control-AD.PNG">
 </p>   
 	
 6. Click **Tuning** and set **0** for **Normal Return Value** of **Start** on the **Parameter** tab.
 
-7. In the **Tuning** page click on **Start** tab and enter the mailbox database name in the **Option Parameter** field.
+7. In the **Tuning** page click on the **Start** tab and enter the mailbox database name in the **Option Parameter** field.
              
-		Option Parameter : <Mailbox database name> example: DB1
+		Option Parameter : <Mailbox database name>
 
 <p align="center">
-<img src="Start-Tuning-appli-control-AD.PNG")>
+<img src="Start-Tuning-appli-control-AD.PNG">
 </p>
 
-8. Click the **Start** tab and set the following parameters:
+8. Set the following parameters:
     ```  
     Domain   : your domain name
     Account  : a user belonging to the Schema Admins group
@@ -295,7 +291,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 9. Click **OK** and then click **Finish**.
 
 
-**STEP :-3** 
+**STEP 3** 
 
 ### Adding 3rd application resource [example: appli-control-DB]
 
@@ -306,7 +302,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Uncheck **Follow the default dependency**. Click the mirror disk resource and click **Add**. Click **Next**.
 
   <p align="center">
-  <img src="Dpncy-appli-control-DB.PNG")>
+  <img src="Dpncy-appli-control-DB.PNG">
   </p>
   
 4. Click **Next** if the default values are acceptable. Make changes to **Retry Count** or **Failover Threshold** first if necessary.
@@ -318,7 +314,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
 	
   <p align="center">
-  <img src="Details-appli-control-DB.PNG")>
+  <img src="Details-appli-control-DB.PNG">
   </p>		
 				 
 6. Click **Tuning** and set **0** for **Normal Return Value** of both **Start** and **Stop** on the **Parameter** tab.
@@ -332,7 +328,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
 		
   <p align="center">
-  <img src="Start-Tuning-appli-control-DB.PNG")>
+  <img src="Start-Tuning-appli-control-DB.PNG">
   </p>		
 		 
 8. Click the **Stop** tab and set the following parameters:
@@ -344,7 +340,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
     ```
     
   <p align="center">
-  <img src="Stop-Tuning-appli-control-DB.PNG")>
+  <img src="Stop-Tuning-appli-control-DB.PNG">
   </p>	
   
 9. Click **OK** and then click **Finish**.
@@ -358,7 +354,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 3. Click **OK**.  
   
   <p align="center">
-  <img src="Dpncy_Mirror_disk.PNG")>
+  <img src="Dpncy_Mirror_disk.PNG">
   </p>
 
 
@@ -367,7 +363,7 @@ For Exchange installation and configuration, please visit [this Microsoft site](
 Please refer to the image below to review the dependencies.
   
    <p align="center">
-  <img src="Entire_Dependency.PNG")>
+  <img src="Entire_Dependency.PNG">
   </p>
 
 ### 2.5 Upload the cluster configuration and start the cluster.
@@ -375,7 +371,7 @@ Please refer to the image below to review the dependencies.
 
 1. First dismount the mailbox database using **Exchange Administrative Center** or the following command in the **Exchange Management Shell** before starting the cluster:
         
-	      Dismount-Database –Identity <Mailbox database name>
+	      Dismount-Database -Identity <Mailbox database name>
 
 2. Then in the Cluster Manager window, click **Apply the Configuration File**. Click **OK**. 
 
@@ -388,7 +384,7 @@ Please refer to the image below to review the dependencies.
 
 **Note** -   
 
-In the case that the **appli-check-service** fails or takes too long to start, start services.msc on the active server and ensure that all Exchange services are running automatically. Start all services that should be running. You can also check **scrpl0** logs (_C:\Program Files\EXPRESSCLUSTER\log_) for troubleshooting help.
+In the case that the **appli-check-service** fails or takes too long to start, start services.msc on the active server and ensure that all Exchange services are running automatically. Start all services that should be running. You can also check **scrpl0** logs (_C:\Program Files\EXPRESSCLUSTER\log_) for troubleshooting.
 
 There is no need to make changes to Microsoft Outlook or OWA.
 
@@ -418,5 +414,3 @@ What can be done when the server is busy, and services don't start? The EXPRESSC
 2. If you are comfortable editing the registry, set _HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Control\ServicesPipeTimeout_ to 60000 (see [this page](https://docs.microsoft.com/en-US/troubleshoot/windows-server/system-management-components/service-not-start-events-7000-7011-time-out-error) from Microsoft regarding this issue). The default value for this key is 30000. Another [site](https://appuals.com/how-to-fix-error-1053-the-service-did-not-respond-to-the-start-or-control-request-in-a-timely-fashion/) recommends setting the timeout value to 180000. In my testing, using the 180000 value gets all of the services running up to two minutes faster than the 60000 value.
 3. If you would rather not edit the registry, set the Exchange server services startup type from '_Automatic_' to '_Automatic (Delayed Start)_'. This is mentioned as an option on [this site](https://community.spiceworks.com/topic/2297222-exchange-2019-services-fails-to-start-on-server-reboot). I have confirmed that this works, but the services don't start as quickly as the ServicesPipeTimeout solution.
 4. If your system is slow to start up and slow to logon, being patient and waiting to logon for a few minutes can help the Exchange services start up faster.
-
-
