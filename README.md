@@ -1,5 +1,7 @@
 # ExchangeServer
 
+Integration guides and monitoring scripts for running Microsoft Exchange Server with EXPRESSCLUSTER X.
+
 ## Exchange Server 2016
 Create a Database Availability Group (DAG) and add some additional EXPRESSCLUSTER monitor resources. For details, please check [ExchangeServer2016/DAG+ECX](https://github.com/EXPRESSCLUSTER/ExchangeServer/blob/master/ExchangeServer2016/DAG+ECX.md).
 
